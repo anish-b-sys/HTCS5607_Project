@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Withdraw Student</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'Get',
+                dataType: 'JSON',
+                url: 'https://balham-college-db.herokuapp.com/api/Student/', //access lecturer database
+                success: function (data) {
+                    i = 0;
+                    while (i < data.length) {
+                        Student = data[i]; //goes through all the records as a loop
+                        checkEnrolments(Student.StudentID); //checks if lecturer has research projects
+                        if (enrolled === true){ //moves on if student has enrolments
+                            $("#student_select_input").append("<option value='"+Student.StudentID+ "'>"+Student.StudentID+" "+Student.LastName+" "+Student.FirstName+"</option>");
+                        }
+                        i = i + 1; //ends the loop
+                    }
+
+                    $("#student_select_input").change(function(){ //when the combo box has a selection
+                        displayStudentDetails($("#student_select_input").val()); //display the lecturer's details
+                        getEnrolments($("#student_select_input").val()); //fills the research project combo box
+                    });
+
+                    $("#withdraw_student_but").click(function(){
+                        withdrawStudent($("#enrolment_select_input").val()); //deletes the research project
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+            function checkEnrolments(StudentID){
+                enrolled = false; //a flag - says that each student isn't enrolled
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    async: false,
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/', //access enrolment database
+                    success: function (data) {
+                        j = 0;
+                        while (j < data.length){
+                            enrolment = data[j];
+                            if (enrolment.Student === StudentID ){
+                                enrolled = true; //flags each assessment that has results
+                                break
+                            }
+                            j = j + 1;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });}
+
+            function getEnrolments(StudentID) {
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/', //access research project database
+                    success: function (data) {
+                        i = 0;
+                        while (i < data.length){
+                            enrolment = data[i];
+                            $("#student_select_input").change(function(){ //when the lecturer changes
+                                $("#enrolment_select_input").empty(); //empties the previous options
+                                $("#enrolment_select_input").append("<option value=''>Select one</option>"); //adds a "select one" option
+                            })
+                            if (enrolment.Student == StudentID){ //where the research project has the same lecturer ID
+                                boxCourseName(enrolment.Course);
+                                $("#enrolment_select_input").append("<option value='"+enrolment.EnrolmentID+"'>"+enrolment.EnrolmentID+" "+course_name+"</option>");
+                                $("#enrolment_select_input").change(function(){ //activates the display research project details when selected
+                                    displayEnrolmentDetails($("#enrolment_select_input").val());
+                                    getCourseName($("#enrolment_select_input").val());
+                                });
+                            }
+                            i = i + 1;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function displayStudentDetails(StudentID){ //displays the lecturer details in the box
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Student/'+StudentID+'/', //access the specific lecturer record
+                    success: function (data) {
+                        $("#student_id_input").val(data.StudentID);
+                        $("#last_name_input").val(data.LastName);
+                        $("#first_name_input").val(data.FirstName); //changes the input fields
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function displayEnrolmentDetails(EnrolmentID){ //displays the research project details in the box
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/'+EnrolmentID+'/', //access the specific research project record
+                    success: function (data) {
+                        $("#enrolment_id_input").val(data.EnrolmentID);
+                        $("#year_input").val(data.Year);
+                        $("#semester_input").val(data.Semester); //replaces the fields
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function getCourseName(EnrolmentID){ //bridge between research project and research topic
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/'+EnrolmentID+'/', //access the specific research project
+                    success: function (data) {
+                        displayCourseName(data.Course); //gives research topic foreign key to RTDescription function
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function displayCourseName(Course){ //displays the research topic description in the box
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Course/', //access research topic database
+                    success: function (data) {
+                        i = 0;
+                        while (i < data.length){
+                            course = data[i];
+                            if (course.CourseID == Course){ //where the research topic ID has the same as the foreign key
+                                $("#course_name_input").val(course.CourseName); //replaces the field
+                            }
+                            i = i + 1;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function boxCourseName(Course){ //bridge between research project and research topic
+                course_name = '';
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    async: false,
+                    url: 'https://balham-college-db.herokuapp.com/api/Course/'+Course+'/', //access the specific research project
+                    success: function (data) {
+                        course_name = data.CourseName
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function withdrawStudent (EnrolmentID) { //delete research project button
+                enrolmentid1 = $("#enrolment_id_input").val();
+                year1 = $("#year_input").val();
+                semester1 = $("#semester_input").val(); //defines the data
+                $.ajax({
+                    type: 'Delete',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/'+EnrolmentID+'/', //access the specific research project record
+                    data: {
+                        EnrolmentID: enrolmentid1,
+                        Year: year1,
+                        Semester: semester1,
+                    },
+                    success: function (data) {
+                        alert("Student withdrawn successfully")
+                        location.reload();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+        });
+
+    </script>
+    <link rel="stylesheet" href="../Styles/styles.css">
+
+</head>
+<body>
+<form onsubmit="return false">
+
+    <div id="container">
+        <img class = "logo" src="../Images/Logo.png"/>
+        <h1>Withdraw Student</h1>
+        <hr>
+        <h2>Student</h2>
+        <hr class = "subHR">
+        <div id = "content">
+
+            <div class="fields">
+                <p>
+                    <select id="student_select_input">
+                        <option value = "">Select Student</option>
+                    </select>
+                </p>
+                <p><input id="student_id_input" type="text" placeholder="Student ID" disabled></p>
+                <p><input id="last_name_input" type="text" placeholder="Last Name" disabled></p>
+                <p><input id="first_name_input" type="text" placeholder="First Name" disabled></p>
+            </div>
+
+            <hr class= "subHR">
+            <h2>Enrolment</h2>
+            <hr class= "subHR">
+
+            <div class="fields">
+                <p>
+                    <select id="enrolment_select_input">
+                        <option value = "">Select Enrolment</option>
+                    </select>
+                </p>
+                <p><input id="enrolment_id_input" type="text" placeholder="Enrolment ID" disabled></p>
+                <p><input id="year_input" type="text" placeholder="Year" disabled></p>
+                <p><input id="semester_input" type="text" placeholder="Semester" disabled></p>
+                <p><input id="course_name_input" type="text" placeholder="Course Name" disabled></p>
+            </div>
+
+        </div>
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+        <div id = buttonCase>
+            <button type="button" id="withdraw_student_but" class="actionButton">Withdraw Student</button>
+            <a href="MainMenu.html"><button type="button" id = "returnButton" >Return</button></a>
+        </div>
+        <br>
+    </div>
+
+</form>
+</body>
+</html>
