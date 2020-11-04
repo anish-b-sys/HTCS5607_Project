@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete Lecturer</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+    <script>
+        $(document).ready(function () {
+            $.ajax({
+                type: 'Get',
+                dataType: 'JSON',
+                url: 'https://balham-college-db.herokuapp.com/api/Lecturer/', //access lecturer database
+                success: function (data) {
+
+                    i = 0;
+                    while (i < data.length) {
+                        Lecturer = data[i]; //goes through all the records as a loop
+                        getAssignmentInfo(Lecturer.LecturerID); //checks if lecturer is assigned
+                        if (assigned === false){ //moves on if lecturer is not assigned
+                            $("#lecturer_select_input").append("<option value='"+Lecturer.LecturerID+ "'>"+Lecturer.LecturerID+" "+Lecturer.LastName+" "+Lecturer.FirstName+"</option>");
+                        }
+
+                        i = i + 1; //ends the loop
+                    }
+
+                    $("#lecturer_select_input").change(function(){ //activates the display lecturer details when selected
+                        Lecturer = displayLecturerDetails($("#lecturer_select_input").val());
+                    });
+
+                    $("#delete_lecturer_but").click(function(){ //deletes the selected lecturer
+                        deleteLecturerInfo($("#lecturer_select_input").val());
+                    });
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+
+            function getAssignmentInfo(LecturerID){
+                assigned = false; //a flag - says that each lecturer is not assigned
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    async: false,
+                    url: 'https://balham-college-db.herokuapp.com/api/Assignment/', //access assignment database
+                    success: function (data) {
+                        j = 0;
+                        while (j < data.length){
+                            assignment = data[j];
+                            if (assignment.Lecturer === LecturerID ){
+                                assigned = true; //flags each lecturer that is assigned
+                                break
+                            }
+                            j = j + 1;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });}
+
+            function displayLecturerDetails(Lecturer){
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Lecturer/'+Lecturer+'/', //access the specific lecturer record
+                    success: function (data) {
+
+                        $("#lecturer_id_input").val(data.LecturerID);
+                        $("#last_name_input").val(data.LastName);
+                        $("#first_name_input").val(data.FirstName); //changes the input fields
+
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+
+            function deleteLecturerInfo (LecturerID) {
+                lecturerid1 = $("#lecturer_id_input").val();
+                lastname1 = $("#last_name_input").val();
+                firstname1 = $("#first_name_input").val(); //defines the data
+
+                $.ajax({
+                    type: 'Delete',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Lecturer/'+LecturerID+'/', //access the specific lecturer record
+                    data: {
+                        LecturerID: lecturerid1,
+                        LastName: lastname1,
+                        FirstName: firstname1,
+                    },
+                    success: function (data) {
+                        alert("Lecturer deleted successfully")
+                        location.reload();
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            }
+        });
+
+    </script>
+    <link rel="stylesheet" href="../Styles/styles.css">
+
+</head>
+<body>
+<form onsubmit="return false">
+
+    <div id="container">
+        <img class = "logo" src="../Images/Logo.png"/>
+        <h1>Delete Lecturer</h1>
+        <hr>
+        <h2>Lecturer</h2>
+        <hr class = "subHR">
+        <div id = "content">
+
+            <div class="fields">
+                <p>
+                    <select id="lecturer_select_input">
+                        <option value = "">Select Lecturer</option>
+                    </select>
+                </p>
+                <p><input id="lecturer_id_input" type="text" placeholder="Lecturer ID" disabled></p>
+                <p><input id="last_name_input" type="text" placeholder="Last Name" disabled></p>
+                <p><input id="first_name_input" type="text" placeholder="First Name" disabled></p>
+            </div>
+
+        </div>
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+        <div id = buttonCase>
+            <button type="button" id="delete_lecturer_but" class="actionButton">Delete Lecturer</button>
+            <a href="MainMenu.html"><button type="button" id = "returnButton" >Return</button></a>
+        </div>
+        <br>
+    </div>
+
+</form>
+
+</body>
+</html>
