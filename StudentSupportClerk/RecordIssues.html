@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Record Issue</title>
+    <script
+            src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous">
+    </script>
+    <script src="../Script/javaScript.js"></script>
+    <link rel="stylesheet" href="../Styles/styles.css">
+
+    <script>
+        $(document).ready(function() {
+            //take students from the API
+            students = getAllStudents();
+            //students is a list
+            //i is my index starts from 0
+            var i = 0;
+            while (i < students.length) {
+                // [i] is the value of this index
+                student = students[i];
+                //my function has value true or false
+                if (hasEnrolled(student.StudentID)){
+                    $("#student_id_input").append("<option value='" + student.StudentID+ "'>" + student.StudentID + " " +student.LastName + " "+ student.FirstName +  "</option>");
+                }
+                i++;
+            }
+
+            $("#student_id_input").change(function () {
+                studentID = $("#student_id_input").val();
+                student = getStudent(studentID);
+                $("#student_id").val(student.StudentID);
+                $("#student_lastnamename").val(student.LastName);
+                $("#student_firstname").val(student.FirstName);
+                $("#student_streetaddy").val(student.StreetAddress);
+                $("#student_suburb").val(student.Suburb);
+                $("#student_city").val(student.City);
+
+                enrolments = getEnrollmentsByStudents(studentID);
+
+                $("#enrolment_id_input").empty();
+                $("#enrolment_id_input").append("<option value=''>Select one</option>");
+
+                var i = 0;
+                while (i < enrolments.length) {
+                    enrolment = enrolments[i];
+                    course = getCourseInfo(enrolment.Course);
+
+                    console.log(enrolment);
+                    console.log(enrolment.Course, "ec");
+                    $("#enrolment_id_input").append("<option value='" + enrolment.EnrolmentID + "'>" + enrolment.Year + " " + enrolment.Semester + " " + course.CourseName + "</option>")
+                    i++;
+
+                }
+                $("#enrolment_id_input").change(function () {
+                    EnrolmentID = $("#enrolment_id_input").val();
+                    console.log("EID",EnrolmentID);
+                    enrolment = getEnrolment(EnrolmentID);
+                    course = getCourseInfo(enrolment.Course);
+
+                    $("#enrolment_number").val(enrolment.EnrolmentID);
+                    $("#enrolment_year").val(enrolment.Year);
+                    $("#enrolment_semester").val(enrolment.Semester);
+                    $("#enrolment_course_name").val(course.CourseName);
+                    console.log(courseName,"cn");
+                })
+            });
+
+            $("#record_issue_but").click(function () {
+                description = $("#issue_description_input").val();
+                issueDate = $("#issue_date_input").val();
+                actionTaken = $("#action_taken_input").val();
+                issueEnrolment = $("#enrolment_number").val();
+
+                $.ajax({
+                    type: 'POST', dataType: 'JSON', url: 'https://balham-college-db.herokuapp.com/api/Issue/', data: {
+                        IssueDescription: description,
+                        IssueDate: issueDate,
+                        ActionTaken: actionTaken,
+                        Enrolment: issueEnrolment
+                    }, success: function (data) {
+                        alert('Issue recorded successfully');
+                        location.reload();
+                    }, error: function (err) {
+                        console.log(err);
+                        errors = JSON.parse(err.responseText);
+                        console.log(errors);
+                        $("#issue_description_input_err").text(errors.IssueDescription);
+                        $("#issue_date_input_err").text(errors.IssueDate);
+                        $("#action_taken_input_err").text(errors.ActionTaken);
+                        $("#enrolment_id_input_err").text(errors.Enrolment);
+
+                    }
+                });
+            });
+
+        });
+
+    </script>
+
+
+</head>
+<body>
+
+<form onsubmit ="return false">
+
+    <div id = "container">
+            <img class="logo" src="../images/Logo.png"/>
+            <h1 >Record Issue</h1>
+
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+
+        <div id = "content">
+
+            <hr class = "subHR">
+            <h2>Student</h2>
+            <hr class = "subHR">
+
+        <div class = "fields">
+            <p>
+                <select id="student_id_input">
+                    <option value = "">Select Student*</option>
+                </select>
+            </p>
+            <p id="#student_id_input_err"></p>
+            <p><input id="student_id" type="text" maxlength="5" size="5" disabled placeholder="Student ID"></p>
+            <p><input id="student_lastnamename" type="text" maxlength="40" size="40" disabled placeholder="Last Name"> </p>
+            <p><input id="student_firstname" type="text" maxlength="40" size="40" disabled placeholder="First Name"></p>
+            <p><input id="student_streetaddy"type="text" maxlength="40" size="40" disabled placeholder="Street Address"></p>
+            <p><input id="student_suburb" type="text" maxlength="40" size="40" disabled placeholder="Suburb"></p>
+            <p><input id="student_city" type="text" maxlength="40" size="40" disabled placeholder="City"></p>
+
+        </div>
+
+            <hr class = "subHR">
+            <h2>Enrolments</h2>
+            <hr class = "subHR">
+
+            <div class="fields">
+            <p>
+                <select id="enrolment_id_input">
+                    <option value = "">Select Enrolment*</option>
+                </select>
+            </p>
+            <p id="enrolment_id_input_err"></p>
+            <p><input id="enrolment_number" type="text" maxlength="25" size="25" disabled placeholder="Enrolment Number"></p>
+            <p><input id="enrolment_year" type="text" maxlength="25" size="25" disabled placeholder="Year"></p>
+            <p><input id="enrolment_semester" type="text" maxlength="25" size="25" disabled placeholder="Semester"></p>
+            <p><input id="enrolment_course_name" type="text" maxlength="25" size="25" disabled placeholder="Course Name"></p>
+
+            </div>
+
+            <hr class = "subHR">
+            <h2>Issue</h2>
+            <hr class = "subHR">
+
+
+            <div class="fields">
+                <p><input id="issue_description_input" type="text" maxlength="100" size="50" placeholder="Description*"></p>
+            <p id="issue_description_input_err"></p>
+
+            <p><input id="issue_date_input" type="date" placeholder="Date*"></p>
+            <p id="issue_date_input_err"></p>
+
+            <p>
+                <input id="action_taken_input" type="text" maxlength="100" size="50"placeholder="Action Taken*" ></p>
+            <p id="action_taken_input_err"></p>
+            </div>
+        </div>
+
+            <hr>
+                <h3>Copyrighted ©Balham College</h3>
+                <hr>
+                <br>
+            <div id = "buttonCase">
+                <button type="button" id="record_issue_but" class="actionButton">Record Issue</button>
+                <a href="MainMenu.html"><button type="button" id = "returnButton" >Return</button></a>
+            </div>
+    </div>
+</form>
+</body>
+</html>
+
+
+
+
