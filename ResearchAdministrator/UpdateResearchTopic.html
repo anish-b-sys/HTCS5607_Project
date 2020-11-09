@@ -23,7 +23,7 @@
                 i = 0;
                 while (i < data.length){
                     topic = data[i];
-                    $("#topic_id_input").append("<option value='" + topic.ResearchTopicID+ "'>" + topic.ResearchTopicID + " " +topic.Description + " "+ topic.Impact +  "</option>");
+                    $("#topic_id_input").append("<option value='" + topic.ResearchTopicID+ "'>" +"ID: "+ topic.ResearchTopicID + " Description: " +topic.Description + " Impact: "+ topic.Impact +  "</option>");
 
                     i = i + 1;
                 }
@@ -49,7 +49,7 @@
                     // location.reload();
                     $("#topic_id").val(data.ResearchTopicID);
                     $("#topic_description").val(data.Description);
-                    $("#topic_Impact").val(data.Impact);
+                    $("#topic_impact").val(data.Impact);
                 },
                 error: function (err) {
                     console.log(err);
@@ -58,6 +58,18 @@
         }
 
         function updateTopicInfo (ID) {
+        console.log(ID);
+            //clear errors
+
+            $("#topic_description_input_err").text("");
+            $("#topic_id_input_err").text("");
+            $("#topic_impact_input_err").text("");
+
+            if (ID == ""){
+
+                $("#topic_id_input_err").text("Please select a research topic");
+            }
+
             // location.reload();
             updateDescription = $("#topic_description").val();
             updateImpact = $("#topic_impact").val();
@@ -94,41 +106,51 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <p id = "volume">
-            <h1>Update a Lecturer</h1>
-            <hr>
+        <img class="logo" src="../images/Logo.png"/>
 
-            <label>List of Research Topics: </label>
+
+        <h1>Update Research Topic</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+
+        <div id = "content">
+            <hr class = "subHR">
+            <h2>Research Topic</h2>
+            <hr class = "subHR">
+
+        <div class="fields">
+
             <p><select id="topic_id_input">
-                <option value = "">Select one</option>
+                <option value = "">Select Research Topic*</option>
             </select>
             </p>
 
-            <label>Research Topic ID:</label>
-            <p><input id="topic_id" type="text"  size="5" disabled></p>
+            <p id="topic_id_input_err"></p>
 
-            <label>Research Topic Description:</label>
-            <p><input id="topic_description" type="text" maxlength="40" size="40"></p>
+
+            <p><input id="topic_id" type="text"  size="5" disabled placeholder="Research Topic ID*"></p>
+
+            <p><input id="topic_description" type="text" maxlength="40" size="40" placeholder="Description*"></p>
             <p id="topic_description_input_err"></p>
 
-            <label>Research Topic Level:</label>
-            <p><select id = "topic_impact">
-                <option value="">Select one</option>
-                <option value="High">High</option>
-                <option value="Medium">Medium</option>
-                <option value="Level">Level</option>
-            </select></p>
+        <p><textarea id="topic_impact" maxlength="60" placeholder="Impact*"></textarea></p>
             <p id="topic_impact_input_err"></p>
 
-            <hr>
+        </div>
+        </div>
+
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+
             <div id = "buttonCase">
 
-                <button type="button" id="update_topic_but">Update Case</button>
-                <a href="MainMenu.html"><button type="button" >Return</button></a>
+                <button type="button" id="update_topic_but" class="actionButton">Update Topic</button>
+                <a href="../MainMenu/research-administrator-menu.html" id="returnButton"><button type="button" >Return</button></a>
             </div>
-
         </div>
-    </div>
 </form>
 </body>
 </html>

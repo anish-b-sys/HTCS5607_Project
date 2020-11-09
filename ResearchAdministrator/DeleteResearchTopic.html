@@ -23,7 +23,7 @@
                     i = 0;
                     while (i < data.length){
                         topic = data[i];
-                        $("#topic_id_input").append("<option value='" + topic.ResearchTopicID+ "'>" + topic.ResearchTopicID + " " +topic.Description + " "+ topic.Impact +  "</option>");
+                        $("#topic_id_input").append("<option value='" + topic.ResearchTopicID+ "'>" +"ID: "+ topic.ResearchTopicID + " Description: " +topic.Description + " Impact: "+ topic.Impact +  "</option>");
 
                         i = i + 1;
                     }
@@ -49,7 +49,7 @@
                         // location.reload();
                         $("#topic_id").val(data.ResearchTopicID);
                         $("#topic_description").val(data.Description);
-                        $("#topic_Impact").val(data.Impact);
+                        $("#topic_impact").val(data.Impact);
                     },
                     error: function (err) {
                         console.log(err);
@@ -59,7 +59,13 @@
 
             function deleteTopicInfo (ID) {
                 // location.reload();
-                console.log();
+                $("#topic_id_input_err").text("");
+
+                if (ID ==""){
+                    $("#topic_id_input_err").text("Please select a research topic");
+
+                }
+
 
                 $.ajax({
                     type: 'DELETE',
@@ -74,18 +80,12 @@
                         console.log(err);
                         errors = JSON.parse(err.responseText);
                         console.log(errors);
-                        $("#topic_description_input_err").text(errors.Description);
-                        $("#topic_impact_input_err").text(errors.Impact);
+
                     }
                 });
             }
             
-            function recordIssue() {
 
-
-
-
-            }
 
 
         });
@@ -95,40 +95,41 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <p id = "volume">
-        <h1>Update a Lecturer</h1>
+        <h1>Delete Research Topic</h1>
         <hr>
+        <div id = "content">
+            <hr class = "subHR">
+            <h2>Research Topic</h2>
+            <hr class = "subHR">
 
-        <label>List of Research Topics: </label>
+            <div class="fields">
+
         <p><select id="topic_id_input">
-            <option value = "">Select one</option>
+            <option value = "">Select Research Topic*</option>
         </select>
         </p>
+                <p id="topic_id_input_err"></p>
 
-        <label>Research Topic ID:</label>
-        <p><input id="topic_id" type="text"  size="5" disabled></p>
 
-        <label>Research Topic Description:</label>
-        <p><input id="topic_description" type="text" maxlength="40" size="40" disabled></p>
-        <p id="topic_description_input_err"></p>
+                <p><input id="topic_id" type="text"  size="5" disabled placeholder="Topic ID"></p>
 
-        <label>Research Topic Level:</label>
-        <p><select id = "topic_impact" disabled>
-            <option value="">Select one</option>
-            <option value="High">High</option>
-            <option value="Medium">Medium</option>
-            <option value="Level">Level</option>
-        </select></p>
-        <p id="topic_impact_input_err"></p>
+        <p><input id="topic_description" type="text" maxlength="40" size="40" disabled placeholder="Description"></p>
 
-        <hr>
+    <p><textarea id="topic_impact" maxlength="60"  disabled placeholder="Impact" ></textarea></p>
+
+    <p id="topic_impact_input_err"></p>
+</div>
+</div>
+
+            <hr>
+            <h3>Copyrighted ©Balham College</h3>
+            <hr>
+            <br>
         <div id = "buttonCase">
-
-            <button type="button" id="delete_topic_but">Delete Topic</button>
-            <a href="MainMenu.html"><button type="button" >Return</button></a>
+            <button type="button" id="delete_topic_but" class="actionButton" >Delete Topic</button>
+            <a href="../MainMenu/research-administrator-menu.html"><button type="button" id="returnButton" >Return</button></a>
         </div>
 
-    </div>
     </div>
 </form>
 </body>
