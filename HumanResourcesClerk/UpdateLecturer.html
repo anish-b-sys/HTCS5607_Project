@@ -23,7 +23,7 @@
                 i = 0;
                 while (i < data.length){
                     lecturer = data[i];
-                    $("#lecturer_id_input").append("<option value='" + lecturer.LecturerID+ "'>" + lecturer.LecturerID + " " +lecturer.LastName + " "+ lecturer.FirstName +  "</option>");
+                    $("#lecturer_id_input").append("<option value='" + lecturer.LecturerID+ "'>" +"ID: "+ lecturer.LecturerID + " Lastname: " +lecturer.LastName + " Firstname: "+ lecturer.FirstName +  "</option>");
 
                     i = i + 1;
                 }
@@ -57,6 +57,7 @@
                     $("#lecturer_phone_number").val(data.PhoneNumber);
                     $("#lecturer_ranking").val(data.Ranking);
                     $("#lecturer_status").val(data.Status);
+                    $("#lecturer_type").val(data.Type);
 
                 },
                 error: function (err) {
@@ -66,6 +67,23 @@
         }
 
         function updateLecturerInfo (LecturerID) {
+
+            $("#lecturer_last_name_input_err").text("");
+            $("#lecturer_id_input_err").text("");
+            $("#lecturer_first_name_input_err").text("");
+            $("#lecturer_street_address_input_err").text("");
+            $("#lecturer_suburb_input_err").text("");
+            $("#lecturer_city_input_err").text("");
+            $("#lecturer_email_address_input_err").text("");
+            $("#lecturer_phone_number_input_err").text("");
+            $("#lecturer_type_input_err").text("");
+            $("#lecturer_ranking_input_err").text("");
+
+            if (LecturerID == ''){
+                $("#lecturer_id_input_err").text("Please select a lecturer");
+
+            }
+
             // location.reload();
             updateFirstName = $("#lecturer_first_name").val();
             updateLastName = $("#lecturer_last_name").val();
@@ -123,71 +141,77 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <p id = "volume">
-            <h1>Update a Lecturer</h1>
-            <hr>
+        <img class="logo" src="../Images/Logo.png"/>
 
-            <label>List of Lecturers: </label>
+        <h1>Update a Lecturer</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+
+        <div id = "content">
+
+            <hr class = "subHR">
+            <h2>Lecturer</h2>
+            <hr class = "subHR">
+
+
+            <div class = "fields">
             <p><select id="lecturer_id_input">
-                <option value = "">Select one</option>
+                <option value = "">Select Lecturer*</option>
             </select>
             </p>
+                <p id="lecturer_id_input_err"></p>
 
-            <label>Lecturer ID:</label>
-            <p><input id="lecturer_id" type="text"  size="5" disabled></p>
 
-            <label>Lecturer First Name:</label>
-            <p><input id="lecturer_first_name" type="text" maxlength="30" size="30"></p>
+                <p><input id="lecturer_id" type="text"  size="5" disabled placeholder="Lecturer ID"></p>
+
+            <p><input id="lecturer_first_name" type="text" maxlength="30" size="30" placeholder="First Name*"></p>
             <p id="lecturer_first_name_input_err"></p>
 
-            <label>Lecturer Last Name:</label>
-            <p><input id="lecturer_last_name" type="text" maxlength="30" size="30"></p>
+            <p><input id="lecturer_last_name" type="text" maxlength="30" size="30" placeholder="Last Name*"></p>
             <p id="lecturer_last_name_input_err"></p>
 
-            <label>Street Address:</label>
-            <p><input id="lecturer_street_address" type="text" maxlength="50" size="50"></p>
+            <p><input id="lecturer_street_address" type="text" maxlength="50" size="50" placeholder="Street Address*"></p>
             <p id="lecturer_street_address_input_err"></p>
 
-            <label>Suburb</label>
-            <p><input id="lecturer_suburb" type="text" maxlength="25" size="25"></p>
+            <p><input id="lecturer_suburb" type="text" maxlength="25" size="25" placeholder="Suburb*"></p>
             <p id="lecturer_suburb_input_err"></p>
 
-            <label>City:</label>
-            <p><input id = "lecturer_city" type = "text" maxlength="25" size="25"></p>
+            <p><input id = "lecturer_city" type = "text" maxlength="25" size="25" placeholder="City*"></p>
             <p id="lecturer_city_input_err"></p>
 
-            <label>Email Address:</label>
-            <p><input id = "lecturer_email_address" type = "text" maxlength="30" size="30"></p>
+            <p><input id = "lecturer_email_address" type = "text" maxlength="30" size="30" placeholder="Email Address"></p>
             <p id="lecturer_email_address_input_err"></p>
 
-            <label>Phone Number:</label>
-            <p><input id = "lecturer_phone_number" type = "text" maxlength="16" size="16"></p>
+            <p><input id = "lecturer_phone_number" type = "text" maxlength="16" size="16" placeholder="Phone number*"></p>
             <p id="lecturer_phone_number_input_err"></p>
 
-            <label>Ranking:</label>
             <p><select id = "lecturer_ranking">
-                <option value="">Select one</option>
+                <option value="">Select Ranking*</option>
                 <option value="A">A</option>
                 <option value="B">B</option>
                 <option value="C">C</option>
             </select></p>
         <p id="lecturer_ranking_input_err"></p>
 
-            <label>Type:</label>
             <p><select id = "lecturer_type">
-                <option value="">Select one</option>
+                <option value="">Select Type*</option>
                 <option value="Academic">Academic</option>
                 <option value="Contract">Contract</option>
         </select></p>
             <p id="lecturer_type_input_err"></p>
-            <hr>
-            <div id = "buttonCase">
-
-                <button type="button" id="update_lecturer_but" class="actionButton">Update Lecturer</button>
-                <a href="MainMenu.html"><button type="button" class="">Return</button></a>
             </div>
-
         </div>
+
+            <hr>
+            <h3>Copyrighted ©Balham College</h3>
+            <hr>
+            <br>
+
+        <div id = "buttonCase">
+                <button type="button" id="update_lecturer_but" class="actionButton">Update Lecturer</button>
+                <a href="../MainMenu/human-resources-clerk-menu.html"><button type="button" id="returnButton">Return</button></a>
+            </div>
     </div>
 </form>
 </body>
