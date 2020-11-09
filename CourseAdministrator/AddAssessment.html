@@ -69,7 +69,7 @@
 <div id="container">
     <div id="content">
         <hr>
-        <h1 align="center">Add Assessment</h1>
+        <h1>Add Assessment</h1>
         <hr>
             <form onsubmit ="return false">
 
@@ -80,11 +80,11 @@
                 <option value = "">Select Course</option>
             </select></td></tr>
 
-            <hr>
+
         </div>
             <hr>
-            <div>
-            <h2 align="center">Assessment Details</h2>
+            <div class="fields">
+            <h2>Assessment Details</h2>
             <hr>
             <p>*<input id="assessmentNumber" type="number" min="1" max="5" placeholder="Number"></p>
             <p>*<input id="assessmentName" maxlength="30" placeholder="Name"></p>
@@ -98,13 +98,11 @@
             <p>*<input id="assessmentMaxMark" type="number" min="50" max="200" placeholder="Maximum Mark"></p>
         </div>
 
-
-
+        <hr>
         <div id="requiredFields">
             <p>Required Fields*</p>
-
         </div>
-
+        <hr>
         <div>
             <button id="addAssessmentBut" >Add Assessment</button>
             <a href="../MainMenu/course-administrator-menu.html"><button type = "button" id = "returnBut" >Return</button></a>
