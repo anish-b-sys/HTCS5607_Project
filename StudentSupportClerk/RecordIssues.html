@@ -23,14 +23,16 @@
                 student = students[i];
                 //my function has value true or false
                 if (hasEnrolled(student.StudentID)){
-                    $("#student_id_input").append("<option value='" + student.StudentID+ "'>" + student.StudentID + " " +student.LastName + " "+ student.FirstName +  "</option>");
+                    $("#student_id_input").append("<option value='" + student.StudentID+ "'>" +"ID: " + student.StudentID + " Lastname: " +student.LastName + " Firstname: "+ student.FirstName +  "</option>");
                 }
                 i++;
             }
 
             $("#student_id_input").change(function () {
+
                 studentID = $("#student_id_input").val();
                 student = getStudent(studentID);
+
                 $("#student_id").val(student.StudentID);
                 $("#student_lastnamename").val(student.LastName);
                 $("#student_firstname").val(student.FirstName);
@@ -41,22 +43,21 @@
                 enrolments = getEnrollmentsByStudents(studentID);
 
                 $("#enrolment_id_input").empty();
-                $("#enrolment_id_input").append("<option value=''>Select one</option>");
+                $("#enrolment_id_input").append("<option value=''>Select Enrolment*</option>");
 
                 var i = 0;
                 while (i < enrolments.length) {
                     enrolment = enrolments[i];
                     course = getCourseInfo(enrolment.Course);
 
-                    console.log(enrolment);
-                    console.log(enrolment.Course, "ec");
-                    $("#enrolment_id_input").append("<option value='" + enrolment.EnrolmentID + "'>" + enrolment.Year + " " + enrolment.Semester + " " + course.CourseName + "</option>")
+
+                    $("#enrolment_id_input").append("<option value='" + enrolment.EnrolmentID + "'>" +"Year: " +enrolment.Year + " Semester: " + enrolment.Semester + " Name: " + course.CourseName + "</option>")
                     i++;
 
                 }
                 $("#enrolment_id_input").change(function () {
                     EnrolmentID = $("#enrolment_id_input").val();
-                    console.log("EID",EnrolmentID);
+
                     enrolment = getEnrolment(EnrolmentID);
                     course = getCourseInfo(enrolment.Course);
 
@@ -64,11 +65,24 @@
                     $("#enrolment_year").val(enrolment.Year);
                     $("#enrolment_semester").val(enrolment.Semester);
                     $("#enrolment_course_name").val(course.CourseName);
-                    console.log(courseName,"cn");
                 })
             });
 
             $("#record_issue_but").click(function () {
+
+
+                $("#issue_description_input_err").text("");
+                $("#student_id_input_err").text("");
+                $("#issue_date_input_err").text("");
+                $("#action_taken_input_err").text("");
+                $("#enrolment_id_input_err").text("");
+
+
+
+                if ($("#enrolment_id_input option").length == 1){
+                    $("#student_id_input_err").text("Please select a student");
+                }
+
                 description = $("#issue_description_input").val();
                 issueDate = $("#issue_date_input").val();
                 actionTaken = $("#action_taken_input").val();
@@ -107,7 +121,7 @@
 <form onsubmit ="return false">
 
     <div id = "container">
-            <img class="logo" src="../images/Logo.png"/>
+            <img class="logo" src="../Images/Logo.png"/>
             <h1 >Record Issue</h1>
 
         <hr>
@@ -126,11 +140,13 @@
                     <option value = "">Select Student*</option>
                 </select>
             </p>
-            <p id="#student_id_input_err"></p>
+
+            <p id="student_id_input_err"></p>
+
             <p><input id="student_id" type="text" maxlength="5" size="5" disabled placeholder="Student ID"></p>
             <p><input id="student_lastnamename" type="text" maxlength="40" size="40" disabled placeholder="Last Name"> </p>
             <p><input id="student_firstname" type="text" maxlength="40" size="40" disabled placeholder="First Name"></p>
-            <p><input id="student_streetaddy"type="text" maxlength="40" size="40" disabled placeholder="Street Address"></p>
+            <p><input id="student_streetaddy" type="text" maxlength="40" size="40" disabled placeholder="Street Address"></p>
             <p><input id="student_suburb" type="text" maxlength="40" size="40" disabled placeholder="Suburb"></p>
             <p><input id="student_city" type="text" maxlength="40" size="40" disabled placeholder="City"></p>
 
@@ -160,14 +176,14 @@
 
 
             <div class="fields">
-                <p><input id="issue_description_input" type="text" maxlength="100" size="50" placeholder="Description*"></p>
+                <p><textarea id="issue_description_input" type="text" maxlength="100"placeholder="Description*"></textarea></p>
             <p id="issue_description_input_err"></p>
 
             <p><input id="issue_date_input" type="date" placeholder="Date*"></p>
             <p id="issue_date_input_err"></p>
 
             <p>
-                <input id="action_taken_input" type="text" maxlength="100" size="50"placeholder="Action Taken*" ></p>
+                <textarea id="action_taken_input" type="text" maxlength="100"placeholder="Action Taken*" ></textarea></p>
             <p id="action_taken_input_err"></p>
             </div>
         </div>
@@ -178,7 +194,7 @@
                 <br>
             <div id = "buttonCase">
                 <button type="button" id="record_issue_but" class="actionButton">Record Issue</button>
-                <a href="MainMenu.html"><button type="button" id = "returnButton" >Return</button></a>
+                <a href="../MainMenu/student-support-clerk-menu.html"><button type="button" id = "returnButton" >Return</button></a>
             </div>
     </div>
 </form>
