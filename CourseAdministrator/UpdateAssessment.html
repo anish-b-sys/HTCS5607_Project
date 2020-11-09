@@ -22,7 +22,7 @@
                     i = 0;
                     while (i < data.length){
                         assessment = data[i];
-                        $("#assessment_id_input").append("<option value='" + assessment.AssessmentID+ "'>"+ assessment.AssessmentID + " " + assessment.AssessmentNumber + " " +assessment.AssessmentName+"</option>");
+                        $("#assessment_id_input").append("<option value='" + assessment.AssessmentID+ "'>"+"Assessment ID: "+ assessment.AssessmentID + " Number: " + assessment.AssessmentNumber + " Name: " +assessment.AssessmentName+"</option>");
 
                         i = i + 1;
                     }
@@ -70,20 +70,18 @@
                     success: function (data) {
                         // location.reload();
                         $("#course_id_input").empty();
+                        $("#course_id_input").append("<option value = ''>"+"Select Course*"+"</option>");
 
                         i = 0;
                         while (i < data.length){
                             course = data[i];
-                            if($("#assessment_id_input").val()==""){
-                                $("#course_id_input").empty();
 
-                            }
-                            else if (course.CourseID == ID){
-                                $("#course_id_input").append("<option value='" + course.CourseID+ " 'selected>" + course.CourseID + " " +course.CourseName+ "</option>");
+                            if (course.CourseID == ID){
+                                $("#course_id_input").append("<option value='" + course.CourseID+ " 'selected>" + "Course ID: "+ course.CourseID + " Name: " +course.CourseName+ "</option>");
 
                             }
                             else{
-                                $("#course_id_input").append("<option value='" + course.CourseID+ "'>" + course.CourseID + " " +course.CourseName+ "</option>");
+                                $("#course_id_input").append("<option value='" + course.CourseID+ "'>" + "Course ID: "+ course.CourseID + " Name: " +course.CourseName+ "</option>");
                             }
 
 
@@ -99,6 +97,20 @@
 
 
             function updateAssessmentInfo (AssessmentID) {
+
+                //clear all errors upon update
+
+                $("#assessment_id_input_err").text("");
+                $("#assessment_name_input_err").text("");
+                $("#assessment_number_input_err").text("");
+                $("#assessment_type_input_err").text("");
+                $("#assessment_weighting_input_err").text("");
+                $("#assessment_mark_input_err").text("");
+                $("#course_id_input_err").text("");
+
+                if (AssessmentID == ""){
+                    $("#assessment_id_input_err").text("Please select an assessment");
+                }
                 // location.reload();
                 updateName = $("#assessment_name").val();
                 updateNumber = $("#assessment_number").val();
@@ -137,6 +149,7 @@
                         $("#assessment_mark_input_err").text(errors.MaximumMark);
                         $("#course_id_input_err").text(errors.Course);
 
+
                     }
                 });
             }
@@ -149,16 +162,14 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <img class="logo" src="../images/Logo.png"/>
-
+        <img class="logo" src="../Images/Logo.png"/>
 
         <h1>Update Assessment</h1>
         <hr>
         <br>
-
         <h3>Note: fields marked '*' are required</h3>
 
-        <div id ="content"></div>
+        <div id ="content">
 
         <hr class = "subHR">
         <h2>Assessments</h2>
@@ -171,13 +182,14 @@
             <option value = "">Select Assessment</option>
         </select>
         </p>
+            <p id="assessment_id_input_err"></p>
 
-        <p><input id="assessment_id" type="text"  size="5" disabled placeholder="Assessment ID"></p>
+        <p><input id="assessment_id" type="text"  size="5" disabled placeholder="Assessment ID*"></p>
 
-        <p><input id="assessment_name" type="text" maxlength="40" size="40" placeholder="Name"></p>
+        <p><input id="assessment_name" type="text" maxlength="30" placeholder="Name*"></p>
         <p id="assessment_name_input_err"></p>
 
-        <p><input id="assessment_number" type="number" maxlength="5" size="5" max="5" min="1" placeholder="Number"></p>
+        <p><input id="assessment_number" type="number" maxlength="5" size="5" max="5" min="1" placeholder="Number*"></p>
         <p id="assessment_number_input_err"></p>
 
         <p><select id="assessment_type" >
@@ -190,10 +202,10 @@
         </p>
         <p id="assessment_type_input_err"></p>
 
-        <p><input id="assessment_weighting" type="number" maxlength="5" size="5" max="100" min="10" placeholder="Weighting"></p>
+        <p><input id="assessment_weighting" type="number" maxlength="5" size="5" max="100" min="10" placeholder="Weighting*"></p>
         <p id="assessment_weighting_input_err"></p>
 
-        <p><input id="assessment_mark" type="number" maxlength="5" size="5" max="200" min="50" placeholder="Maximum Mark"></p>
+        <p><input id="assessment_mark" type="number" maxlength="5" size="5" max="200" min="50" placeholder="Maximum Mark*"></p>
         <p id="assessment_mark_input_err"></p>
 
         </div>
@@ -204,22 +216,24 @@
 
         <div class="fields">
         <p><select id="course_id_input" >
-        <option value = "">Select Course</option>
+        <option value = "">Select Course*</option>
         </select></p>
 
         <p id="course_id_input_err"></p>
+        </div>
+
         </div>
         <hr>
         <h3>Copyrighted ©Balham College</h3>
         <hr>
         <br>
+
         <div id = "buttonCase">
 
             <button type="button" id="update_assessment_but" class="actionButton">Update Assessment</button>
-            <a href="MainMenu.html"><button type="button" id="returnButton">Return</button></a>
+            <a href="../MainMenu/course-administrator-menu.html"><button type="button" id="returnButton">Return</button></a>
         </div>
 
-    </div>
     </div>
 </form>
 </body>
