@@ -23,7 +23,7 @@
                 i = 0;
                 while (i < data.length){
                     student = data[i];
-                    $("#student_id_input").append("<option value='" + student.StudentID+ "'>" + student.StudentID + " " +student.LastName + " "+ student.FirstName +  "</option>");
+                    $("#student_id_input").append("<option value='" + student.StudentID+ "'>" +"ID: "+ student.StudentID + " Lastname: " +student.LastName + " Firstname: "+ student.FirstName +  "</option>");
 
                     i = i + 1;
                 }
@@ -65,6 +65,22 @@
         }
 
         function updateStudentInfo (StudentID) {
+
+            //clear errors
+
+            $("#student_last_name_input_err").text("");
+            $("#student_id_input_err").text("");
+            $("#student_first_name_input_err").text("");
+            $("#student_street_address_input_err").text("");
+            $("#student_suburb_input_err").text("");
+            $("#student_city_input_err").text("");
+            $("#student_email_address_input_err").text("");
+            $("#student_phone_number_input_err").text("");
+            $("#student_status_input_err").text("");
+
+            if (StudentID == ""){
+                $("#student_id_input_err").text("Please select a student");}
+
             // location.reload();
             updateFirstName = $("#student_first_name").val();
             updateLastName = $("#student_last_name").val();
@@ -119,62 +135,70 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <p id = "volume">
-            <h1>Update a Student</h1>
-            <hr>
+        <img class="logo" src="../Images/Logo.png"/>
 
-            <label>List of Students: </label>
+
+        <h1>Update Student</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+
+        <div id = "content">
+
+            <hr class = "subHR">
+            <h2>Update a Student</h2>
+            <hr class = "subHR">
+
+            <div class="fields">
+
             <p><select id="student_id_input">
-                <option value = "">Select one</option>
-            </select>
-            </p>
+                <option value = "">Select Student*</option>
+            </select></p>
+            <p id="student_id_input_err"></p>
 
-            <label>Student ID:</label>
-            <p><input id="student_id" type="text"  size="5" disabled></p>
+                <p><input id="student_id" type="text"  size="5" disabled placeholder="Student Id*"></p>
 
-            <label>Student First Name:</label>
-            <p><input id="student_first_name" type="text" maxlength="30" size="30"></p>
+            <p><input id="student_first_name" type="text" maxlength="30" size="30" placeholder="First Name*"></p>
             <p id="student_first_name_input_err"></p>
 
-            <label>Student Last Name:</label>
-            <p><input id="student_last_name" type="text" maxlength="30" size="30"></p>
+            <p><input id="student_last_name" type="text" maxlength="30" size="30" placeholder="Last Name*"></p>
             <p id="student_last_name_input_err"></p>
 
-            <label>Street Address:</label>
-            <p><input id="student_street_address" type="text" maxlength="50" size="50"></p>
+            <p><input id="student_street_address" type="text" maxlength="50" size="50" placeholder="Address*"></p>
             <p id="student_street_address_input_err"></p>
 
-            <label>Suburb</label>
-            <p><input id="student_suburb" type="text" maxlength="25" size="25"></p>
+            <p><input id="student_suburb" type="text" maxlength="25" size="25" placeholder="Suburb*"></p>
             <p id="student_suburb_input_err"></p>
 
-            <label>City:</label>
-            <p><input id = "student_city" type = "text" maxlength="25" size="25"></p>
+            <p><input id = "student_city" type = "text" maxlength="25" size="25" placeholder="City*"></p>
             <p id="student_city_input_err"></p>
 
-            <label>Email Address:</label>
-            <p><input id = "student_email_address" type = "text" maxlength="30" size="30"></p>
+            <p><input id = "student_email_address" type = "text" maxlength="30" size="30" placeholder="Email Address"></p>
             <p id="student_email_address_input_err"></p>
 
-            <label>Phone Number:</label>
-            <p><input id = "student_phone_number" type = "text" maxlength="16" size="16"></p>
+            <p><input id = "student_phone_number" type = "text" maxlength="16" size="16" placeholder="Phone number*"></p>
             <p id="student_phone_number_input_err"></p>
 
-            <label>Status:</label>
             <p><select id = "student_status">
-                <option value="">Select one</option>
+                <option value="">Select Status*</option>
                 <option value="Part-Time">Part-Time</option>
                 <option value="Full-Time">Full-Time</option>
         </select></p>
             <p id="student_status_input_err"></p>
-            <hr>
-            <div id = "buttonCase">
-
-                <button type="button" id="update_student_but">Update Student</button>
-                <a href="MainMenu.html"><button type="button" >Return</button></a>
-            </div>
+        </div>
 
         </div>
+
+
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+            <div id = "buttonCase">
+                <button type="button" id="update_student_but" class="actionButton">Update Student</button>
+                <a href="../MainMenu/enrolments-clerk-menu.html"><button type="button" id="returnButton">Return</button></a>
+            </div>
+
     </div>
 </form>
 </body>
