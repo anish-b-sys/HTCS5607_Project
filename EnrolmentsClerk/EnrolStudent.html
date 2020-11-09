@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Enrol Student</title>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"
+            integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0="
+            crossorigin="anonymous">
+    </script>
+    <script src="js/script.js"></script>
+
+    <script src="https://xxbridgeyxx.github.io/BALHAMCOLLEGE/js/script.js">
+    </script>
+
+    <script src="https://marshall942.github.io/BalhamCollege/js/script.js">
+    </script>
+    <script>
+
+
+        $(document).ready(function () {
+
+
+            students = getAllStudents();
+            var i = 0;
+            while (i < students.length) {
+                student = students[i];
+                $("#studentSelect").append("<option value='" + student.StudentID + "'>" + student.LastName + " " + student.FirstName + "</option>");
+                i = i + 1;
+
+                console.log(student);
+
+            }
+            courses = getAllCourses();
+            var i = 0;
+            while (i < courses.length) {
+                course = courses[i];
+                $("#courseSelect").append("<option value='" + course.CourseID + "'>" + course.CourseName + " </option>");
+                i = i + 1;
+
+                console.log(course);
+            }
+
+            $("#courseSelect").change(function () {
+                course = getCourseInfo($("#courseSelect").val());
+
+                $("#courseID").val(course.CourseID);
+                $("#courseName").val(course.CourseName);
+            });
+            $("#studentSelect").change(function () {
+                student = getStudent($("#studentSelect").val());
+
+                $("#studentID").val(student.StudentID);
+                $("#lastName").val(student.LastName);
+                $("#firstName").val(student.FirstName);
+                $("#streetAddress").val(student.StreetAddress);
+                $("#suburb").val(student.Suburb);
+                $("#city").val(student.City);
+
+                enrolments = getEnrollmentsByStudents($("#studentSelect").val());
+                $("#enrolmentSelect").empty();
+                $("#enrolmentSelect").append("<option value=''>Select Enrolment</option>");
+                var i = 0;
+                while (i < enrolments.length) {
+                    enrolment = enrolments[i];
+                    $("#enrolmentSelect").append("<option value='" + enrolment.EnrolmentID + "'>" + enrolment.Year + " " + enrolment.Course + "</option>");
+                    i = i + 1;
+
+                    console.log(enrolment);
+                }
+                $("#enrolmentSelect").change(function () {
+                    enrolment = getEnrolment($("#enrolmentSelect").val());
+
+                    $("#enrolmentNumber").val(enrolment.EnrolmentID);
+                    $("#enrolmentYear").val(enrolment.Year);
+                    $("#enrolmentSemester").val(enrolment.Semester);
+                    $("#enrolmentCourse").val(enrolment.Course);
+
+
+                });
+            });
+            $("#enrolStudentBut").click(function () {
+                year = $("#year").val();
+                semester = $("#semester").val();
+                status1 = $("#statusSelect").val();
+                student = $("#studentSelect").val();
+                course = $("#courseSelect").val();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Enrolment/',
+                    data: {
+
+                        Year: year,
+                        Semester: semester,
+                        Status: status1,
+                        Student: student,
+                        Course: course,
+                    },
+                    success: function (data) {
+                        alert('Enrolment added successfully');
+                        location.reload();
+                    },
+                    error: function (data) {
+                        alert('Please Check Fields');
+                        location.reload();
+                        console.log(data)
+                    },
+                });
+            });
+        });
+    </script>
+    <link rel="stylesheet" href="../Styles/styles.css">
+
+</head>
+<body>
+<div id="container">
+    <hr>
+    <h1>Enrol Student</h1>
+    <hr>
+    <div id="content">
+    <form onsubmit="return false">
+
+        <div class="fields">
+            <hr>
+            <h2 >Student</h2>
+            <hr>
+            <p>
+                *<select id="studentSelect">
+                    <option value="">Select Student</option>
+                </select>
+            </p>
+            <p>
+                <input id="studentID" placeholder="Student ID" readonly>
+            </p>
+            <p>
+                <input id="lastName" placeholder="Last Name" readonly>
+            </p>
+            <p>
+                <input id="firstName" placeholder="First Name" readonly>
+            </p>
+            <p>
+                <input id="streetAddress" placeholder="Street Address" readonly>
+            </p>
+            <p>
+                <input id="suburb" placeholder="Suburb" readonly>
+            </p>
+            <p>
+                <input id="city" placeholder="City" readonly>
+            </p>
+            <hr>
+        </div>
+        <div class="fields">
+            <hr>
+            <h2>Enrolment</h2>
+            <hr>
+            <p>
+                *<select id="enrolmentSelect">
+                    <option value="">Select Enrolment</option>
+                </select>
+            </p>
+            <p>
+                <input id="enrolmentNumber" placeholder="Enrolment Number" readonly>
+            </p>
+            <p>
+                <input id="enrolmentYear" placeholder="Year" readonly>
+            </p>
+            <p>
+                <input id="enrolmentSemester" placeholder="Semester" readonly>
+            </p>
+            <p>
+                <input id="enrolmentCourse" placeholder="Course" readonly>
+            </p>
+        </div>
+        <div class="fields">
+            <hr>
+            <h2>Course</h2>
+            <hr>
+            <p>
+                *<select id="courseSelect">
+                    <option value="">Select Course</option>
+                </select>
+            </p>
+            <p>
+                <input id="courseID" placeholder="Course ID" readonly>
+            </p>
+            <p>
+                <input id="courseName" placeholder="Course Name" readonly>
+            </p>
+            <p>
+                *<input id="year" type="number" min="2018" max="2050" placeholder="Year">
+            </p>
+            <p>
+                *<input id="semester" type="number" min="1" max="3" placeholder="Semester">
+            </p>
+            <p>
+                *<select id="statusSelect">
+                    <option value="">Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Paid">Paid</option>
+                    <option value="Complete">Complete</option>
+                </select>
+            </p>
+        </div>
+        <div id="requiredFields">
+            <hr>
+            <p>
+                Required Fields*
+            </p>
+            <hr>
+        </div>
+        <div id="buttonDiv">
+            <button id="enrolStudentBut">Enrol Student</button>
+            <a href="../MainMenu/enrolments-clerk-menu.html"><button type="button" id="returnBut">Return</button></a>
+        </div>
+    </form>
+    </div>
+</div>
+</body>
+</html>
