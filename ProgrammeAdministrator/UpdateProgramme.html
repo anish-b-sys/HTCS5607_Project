@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -23,7 +24,7 @@
                 i = 0;
                 while (i < data.length){
                     programme = data[i];
-                    $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ "'>" + programme.ProgrammeID + " " +programme.ProgrammeName + " "+ programme.Level +  "</option>");
+                    $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ "'>" +"ID: "+ programme.ProgrammeID + " Name: " +programme.ProgrammeName + " Level: "+ programme.Level +  "</option>");
 
                     i = i + 1;
                 }
@@ -60,6 +61,16 @@
         }
 
         function updateProgrammeInfo (ProgrammeID) {
+            //clear errors
+            $("#programme_name_input_err").text("");
+            $("#programme_id_input_err").text("");
+            $("#programme_level_name_input_err").text("");
+
+            if (ProgrammeID==""){
+                $("#programme_id_input_err").text("Please select a programme");
+
+            }
+
             // location.reload();
             updateName = $("#programme_name").val();
             updateLevel = $("#programme_level").val();
@@ -96,36 +107,50 @@
 <body>
 <form onsubmit ="return false">
     <div id = "container">
-        <p id = "volume">
-            <h1>Update a Programme</h1>
-            <hr>
+        <img class="logo" src="../images/Logo.png"/>
 
-            <label>List of Programmes: </label>
+
+        <h1>Update Programme</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+        <div id = "content">
+
+            <hr class = "subHR">
+            <h2>Programme</h2>
+            <hr class = "subHR">
+            <div class="fields">
+
             <p><select id="programme_id_input">
-                <option value = "">Select one</option>
+                <option value = "">Select Programme*</option>
             </select>
             </p>
 
-            <label>Programme ID:</label>
-            <p><input id="programme_id" type="text"  size="5" disabled></p>
+                <p id="programme_id_input_err"></p>
 
-            <label>Programme First Name:</label>
-            <p><input id="programme_name" type="text" maxlength="25" size="25"></p>
+
+                <p><input id="programme_id" type="text"  size="5" disabled placeholder="Programme ID"></p>
+
+            <p><input id="programme_name" type="text" maxlength="25" size="25" placeholder="Name*"></p>
             <p id="programme_name_input_err"></p>
 
-            <label>Programme Level:</label>
-            <p><input id="programme_level" type="number" maxlength="2" size="2" min="1" max="10" > </p>
+            <p><input id="programme_level" type="number" maxlength="2" size="2" min="1" max="10" placeholder="Level*"> </p>
             <p id="programme_level_input_err"></p>
 
-            <hr>
-            <div id = "buttonCase">
+        </div>
+        </div>
 
-                <button type="button" id="update_programme_but">Update Programme</button>
-                <a href="MainMenu.html"><button type="button" >Return</button></a>
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+
+            <div id = "buttonCase">
+                <button type="button" id="update_programme_but" class="actionButton">Update Programme</button>
+                <a href="../MainMenu/programme-administrator-menu.html"><button type="button" id="returnButton">Return</button></a>
             </div>
 
         </div>
-    </div>
 </form>
 </body>
 </html>

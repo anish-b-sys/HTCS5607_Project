@@ -22,7 +22,7 @@
                 i = 0;
                 while (i < data.length){
                     course = data[i];
-                    $("#course_id_input").append("<option value='" + course.CourseID+ "'>" + course.CourseID + " " +course.CourseName+"</option>");
+                    $("#course_id_input").append("<option value='" + course.CourseID+ "'>" +"ID: "+ course.CourseID + " Name: " +course.CourseName+"</option>");
 
                     i = i + 1;
                 }
@@ -53,7 +53,6 @@
                     $("#course_fee").val(data.Fee);
                     $("#course_status").val(data.Status);
                     // $("#course_programme_id_input").val(data.Programme);
-                    console.log(data.Programme);
                     getProgrammeInfo(data.Programme);
 
 
@@ -71,23 +70,18 @@
                 success: function (data) {
                     // location.reload();
                     $("#programme_id_input").empty();
+                    $("#programme_id_input").append("<option value=''>"+"Select Programme*"+"</option>");
 
                     i = 0;
                     while (i < data.length){
                         programme = data[i];
-                        if($("#course_id_input").val()==""){
-                            $("#programme_id_input").empty();
-                            console.log("hey")
 
-                        }
-                        else if (programme.ProgrammeID == ID){
-                            $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ " 'selected>" + programme.ProgrammeID + " " +programme.ProgrammeName+ " " + programme.Level + "</option>");
-                            console.log("in");
+                        if (programme.ProgrammeID == ID){
+                            $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ " 'selected>" + "ID: "+ programme.ProgrammeID + " Name: " +programme.ProgrammeName+ " Level: " + programme.Level + "</option>");
 
                         }
                         else{
-                            $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ "'>" + programme.ProgrammeID + " " +programme.ProgrammeName+ " " + programme.Level + "</option>");
-                            console.log("out");
+                            $("#programme_id_input").append("<option value='" + programme.ProgrammeID+ " '>" + "ID: "+ programme.ProgrammeID + " Name: " +programme.ProgrammeName+ " Level: " + programme.Level + "</option>");
                         }
 
 
@@ -103,12 +97,25 @@
 
 
         function updateCourseInfo (CourseID) {
+
+            //clear errors
+            $("#course_id_input_err").text("");
+            $("#course_name_input_err").text("");
+            $("#course_credits_input_err").text("");
+            $("#course_fee_input_err").text("");
+            $("#course_status_input_err").text("");
+            $("#programme_input_err").text("");
+
             // location.reload();
             updateName = $("#course_name").val();
             updateCreditsName = $("#course_credits").val();
             updateFee = $("#course_fee").val();
             updateStatus =$("#course_status").val();
             updateProgramme =$("#programme_id_input").val();
+
+            if(CourseID ==""){
+                $("#course_id_input_err").text("Please select a course");
+            }
 
             console.log();
 
@@ -145,7 +152,7 @@
 
         });
     </script>
-    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="../Styles/styles.css">
 </head>
 <body>
 <form onsubmit ="return false">
@@ -161,7 +168,7 @@
 
         <div id = "content">
             <hr class = "subHR">
-            <h2>Assessments</h2>
+            <h2>Course</h2>
             <hr class = "subHR">
             <div class="fields">
 
@@ -170,23 +177,26 @@
 
 
             <p><select id="course_id_input">
-                <option value = "">Select Course</option>
+                <option value = "">Select Course*</option>
             </select>
             </p>
 
-            <p><input id="course_id" type="text"  size="5" disabled placeholder="Course ID"></p>
+                <p id="course_id_input_err"></p>
 
-            <p><input id="course_name" type="text" maxlength="40" size="40" placeholder="Name"></p>
+
+                <p><input id="course_id" type="text"  size="5" disabled placeholder="Course ID"></p>
+
+            <p><input id="course_name" type="text" maxlength="40" size="40" placeholder="Name*"></p>
             <p id="course_name_input_err"></p>
 
-            <p><input id="course_credits" type="number" maxlength="3" size="3" max="120" min="5" placeholder="Credits"></p>
+            <p><input id="course_credits" type="number" maxlength="3" size="3" max="120" min="5" placeholder="Credits*"></p>
             <p id="course_credits_input_err"></p>
 
-            <p><input id="course_fee" type="number" maxlength="7" size="7" max="8000.00" min="200.00" placeholder="Fee"></p>
+            <p><input id="course_fee" type="number" maxlength="7" size="7" max="8000.00" min="200.00" placeholder="Fee*"></p>
             <p id="course_fee_input_err"></p>
 
             <p><select id="course_status">
-                <option value="">Select Status</option>
+                <option value="">Select Status*</option>
                 <option value="Current">Current</option>
                 <option value="Suspended">Suspended</option>
             </select>
@@ -200,7 +210,7 @@
 
             <div class="fields">
                 <p><select id = "programme_id_input">
-                    <option value="">Select Programme</option>
+                    <option value="">Select Programme*</option>
                 </select></p>
                 <p id="programme_input_err"></p>
 
@@ -214,7 +224,7 @@
         <div id = "buttonCase">
 
                 <button type="button" id="update_course_but" class="actionButton">Update Course</button>
-                <a href="MainMenu.html"><button type="button" id="returnButton">Return</button></a>
+                <a href="../MainMenu/programme-administrator-menu.html"><button type="button" id="returnButton">Return</button></a>
             </div>
     </div>
 </form>
