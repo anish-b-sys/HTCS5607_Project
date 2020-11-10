@@ -41,15 +41,16 @@
                         $("#lecturer_report").append("<hr>" +
                             "<h3 id='h3'>Lecturer</h3>" +
                             "Lecturer ID: " + lecturer.LecturerID +
-                            "<br>" + "Lecturer Last Name: " + lecturer.LastName +
-                            "<br>" + "Lecturer First Name: " + lecturer.FirstName +
-                            "<br>" + "Lecturer Street Address: " + lecturer.StreetAddress +
-                            "<br>" + "Lecturer Suburb: " + lecturer.Suburb +
-                            "<br>" + "Lecturer City: " + lecturer.City +
-                            "<br>" + "Lecturer Phone Number: " + lecturer.PhoneNumber +
-                            "<br>" + "Lecturer Email Address: " + lecturer.EmailAddress +
-                            "<br>" + "Lecturer Ranking: " + lecturer.Ranking +
-                            "<br>" + "Lecturer Type: " + lecturer.Type +
+                            "<br>" + "Last Name: " + lecturer.LastName +
+                            "<br>" + "First Name: " + lecturer.FirstName +
+                            "<br>" + "Street Address: " + lecturer.StreetAddress +
+                            "<br>" + "Suburb: " + lecturer.Suburb +
+                            "<br>" + "City: " + lecturer.City +
+                            "<br>" + "Phone Number: " + lecturer.PhoneNumber +
+                            "<br>" + "Email Address: " + lecturer.EmailAddress +
+                            "<br>" + "Ranking: " + lecturer.Ranking +
+                            "<br>" + "Type: " + lecturer.Type +
+                                                     "<hr>" + "Total Count Assignments: " + countAssignments +
                             // "<br>" + "Count of Assignments : " + assignmentcount +
                             "<hr>");
                         getCountAssignment(lecturer.LecturerID);
@@ -82,7 +83,7 @@
                             }
                             j = j + 1;
                         }
-                        $("#lecturer_report").append("<hr>" + "Total Count Assignments: " + countAssignments );
+//                         $("#lecturer_report").append("<hr>" + "Total Count Assignments: " + countAssignments );
                     },
                     error: function (err) {
                         console.log(err);
