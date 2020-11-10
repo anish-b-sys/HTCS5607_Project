@@ -19,6 +19,9 @@
     </script>
     <script>
         $(document).ready(function(){
+            
+                        $("#print_report_but").click(function () {
+
             $.ajax({
                 type: 'Get',
                 dataType: 'JSON',
@@ -87,6 +90,7 @@
                 });
 
             }
+                        })
         });
 
     </script>
