@@ -14,6 +14,7 @@
     <script>
         $(document).ready(function () {
 
+
             $("#main").empty();
             console.log("valid login" + hasValidLogin());
             if (hasValidLogin()) {
@@ -26,21 +27,33 @@
                 console.log(groups);
                 if (groups.includes(1)){
                     $("#main").load("enrolments-clerk-menu.html");
+                    $("#title").text("Welcome Enrolment Clerk")
                 }
                 if (groups.includes(2)){
                     $("#main").load("human-resources-clerk-menu.html");
+                    $("#title").text("Welcome Human Resources Clerk")
+
                 }
                 if (groups.includes(3)){
                     $("#main").load("course-administrator-menu.html");
+                    $("#title").text("Welcome Course Administrator")
+
                 }
                 if (groups.includes(4)){
                     $("#main").load("programme-administrator-menu.html");
+                    $("#title").text("Welcome Programme Administrator")
+
                 }
                 if (groups.includes(5)){
                     $("#main").load("research-administrator-menu.html");
+                    $("#title").text("Welcome Research Administrator")
+
+
                 }
                 if (groups.includes(6)){
                     $("#main").load("student-support-clerk.html");
+                    $("#title").text("Welcome Student Support Clerk")
+
                 }
 
             } else {
@@ -60,36 +73,115 @@
             });
         });
     </script>
-    <link rel="stylesheet" href="cs/style.css">
     <link rel="stylesheet" href="../Styles/styles.css">
+<style>
+    #login,#loggedin{
+        padding-top:.5%;
+        padding-bottom:.5%;
+        padding-right:1%;
+        padding-left:1%;
+    }
+    #loggedin{
+        background-color: rgba(0, 0, 0, 0.75);
+        border-radius: 25px;
+        border: var(--main-outline-colour);
 
+    }
+    #title{
+        float: left;
+        font-size: 25px;
+        align-content: center;
+    }
+    #loggedin button{
+        color: white;
+        margin-left: 59%;
+    }
+    input, select {
+        width: 50%;
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+    .loginHead{
+        color: white;
+    }
+    /*#loggedin,#login{*/
+    /*    border-radius: 25px;*/
+    /*    background-color: rgba(0, 0, 0, 0.75);*/
+    /*}*/
+    #loginBut{
+        width: 50%;
+    }
+    #logoutBut{
+        width: 25%;
+    }
+</style>
 </head>
 <body>
-<div id="header">
-    <table width="100%">
-        <tr>
-            <td width="60%">This is menu place</td>
-            <td id="loginPlace">
-                <div id="login">
-                    Username: <input type="text" id="username" name="username">
-                    Password: <input type="password" id="password" name="password">
-                    <button id="loginBut">Login</button>
-                </div>
-                <div id="loggedin">
-                    <button id="logoutBut">Log out</button>
-                </div>
-            </td>
-        </tr>
-    </table>
+<div id="login">
+<div id="container">
+    <img class="logo" src="../Images/Logo.png"/>
+
+    <h1>Login</h1>
+    <hr>
+    <br>
+    <h3>Please enter your login credentials</h3>
+
+    <div id="content">
+    <hr class = "subHR">
+
+    <div class="fields">
+
+        <input type="text" id="username" name="username" placeholder="Username">
+        <br>
+        <input type="password" id="password" name="password" placeholder="Password">
+        <br>
+        <br>
+        <button id="loginBut">Login</button>
+        <br>
+        <br>
 
 
+    </div>
+        <hr>
+        <h3>Can't remember your credentials? Contact your administrator!</h3>
+    </div>
+
+
+<!--    <button id="logoutBut">Log out</button>-->
+
+<!--    <table width="100%">-->
+<!--        <tr>-->
+<!--            <td width="60%">This is menu place</td>-->
+<!--            <td id="loginPlace">-->
+<!--                <div id="login">-->
+<!--                    Username: <input type="text" id="username" name="username">-->
+<!--                    Password: <input type="password" id="password" name="password">-->
+<!--                    <button id="loginBut">Login</button>-->
+<!--                </div>-->
+<!--                <div id="loggedin">-->
+<!--                    <button id="logoutBut">Log out</button>-->
+<!--                </div>-->
+<!--            </td>-->
+<!--        </tr>-->
+<!--    </table>-->
+
+    <hr>
+    <h3>Copyrighted ©Balham College</h3>
+</div></div>
+
+<div id="loggedin">
+    <button id="logoutBut">Log out</button>
+    <h1 id="title"></h1>
 </div>
-</div>
+<br>
+<br>
+
 <div id="main">
-    something here
 </div>
-<div id="footer">
-    This is footer
-</div>
+
 </body>
 </html>
