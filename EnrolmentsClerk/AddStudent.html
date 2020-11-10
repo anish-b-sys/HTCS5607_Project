@@ -43,6 +43,17 @@
                 phonenumber1 = $("#phonenumber_input").val();
                 emailaddress1 = $("#emailaddress_input").val();
                 status1 = $("#status_input").val();
+                
+                                     //clear errors
+
+            $("#lastname_input_err").text("");
+            $("#firstname_input_err").text("");
+            $("#streetaddress_input_err").text("");
+            $("#suburb_input_err").text("");
+            $("#city_input_err").text("");
+            $("#emailaddress_input_err").text("");
+            $("#phonenumber_input_err").text("");
+            $("#status_input_err").text("");
 
 
                 $.ajax({
@@ -82,16 +93,7 @@
                         $("#phonenumber_input_err").text(errors.PhoneNumber);
                         $("#status_input_err").text(errors.Status);
                     }
-                     //clear errors
 
-            $("#lastname_input_err").text("");
-            $("#firstname_input_err").text("");
-            $("#streetaddress_input_err").text("");
-            $("#suburb_input_err").text("");
-            $("#city_input_err").text("");
-            $("#emailaddress_input_err").text("");
-            $("#phonenumber_input_err").text("");
-            $("#status_input_err").text("");
 
                 });
             });
