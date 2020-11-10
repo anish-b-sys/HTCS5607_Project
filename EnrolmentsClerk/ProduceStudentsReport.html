@@ -20,6 +20,8 @@
 
     <script>
         $(document).ready(function(){
+                $("#print_report_but").click(function () {
+
 
             $.ajax({
                 type: 'Get',
@@ -128,8 +130,11 @@
                 }
             });
             return enrolments;
+            
 
         }
+        })
+            
 
         function print1(){
             window.print();
