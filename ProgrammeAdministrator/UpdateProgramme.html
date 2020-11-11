@@ -64,7 +64,7 @@
             //clear errors
             $("#programme_name_input_err").text("");
             $("#programme_id_input_err").text("");
-            $("#programme_level_name_input_err").text("");
+            $("#programme_level_input_err").text("");
 
             if (ProgrammeID==""){
                 $("#programme_id_input_err").text("Please select a programme");
@@ -94,7 +94,7 @@
                     errors = JSON.parse(err.responseText);
                     console.log(errors);
                     $("#programme_name_input_err").text(errors.ProgrammeName);
-                    $("#programme_level_name_input_err").text(errors.Level);
+                    $("#programme_level_input_err").text(errors.Level);
                 }
             });
         }
