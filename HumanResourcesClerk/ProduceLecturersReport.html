@@ -19,94 +19,100 @@
     </script>
     <script>
         $(document).ready(function(){
-            
-                        $("#print_report_but").click(function () {
+            $("#print_report_but").click(function () {
 
-            $.ajax({
-                type: 'Get',
-                dataType: 'JSON',
-                async: 'false',
-                url: 'https://balham-college-db.herokuapp.com/api/Lecturer/',
-                success: function (data) {
-                    // location.reload();
-                    var assignmentcount;
-                    i = 0;
-
-                    while (i < data.length){
-
-                        lecturer = data[i];
-                        // var assignmentID = lecturer.assignment;
-                        // assignmentcount = getCountAssignment(assignmentID);
-                        console.log(getCountAssignment);
-                        $("#lecturer_report").append("<hr>" +
-                            "<h3 id='h3'>Lecturer</h3>" +
-                            "Lecturer ID: " + lecturer.LecturerID +
-                            "<br>" + "Last Name: " + lecturer.LastName +
-                            "<br>" + "First Name: " + lecturer.FirstName +
-                            "<br>" + "Street Address: " + lecturer.StreetAddress +
-                            "<br>" + "Suburb: " + lecturer.Suburb +
-                            "<br>" + "City: " + lecturer.City +
-                            "<br>" + "Phone Number: " + lecturer.PhoneNumber +
-                            "<br>" + "Email Address: " + lecturer.EmailAddress +
-                            "<br>" + "Ranking: " + lecturer.Ranking +
-                            "<br>" + "Type: " + lecturer.Type +
-                                                     "<hr>" + "Total Count Assignments: " + countAssignments +
-                            // "<br>" + "Count of Assignments : " + assignmentcount +
-                            "<hr>");
-                        getCountAssignment(lecturer.LecturerID);
-
-                        i = i + 1;
-                    }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
-            });
-
-
-            function getCountAssignment(LecturerID){
-                countAssignments = 0;
-
-                console.log(LecturerID);
                 $.ajax({
                     type: 'Get',
                     dataType: 'JSON',
-                    async: false,
-                    url: 'https://balham-college-db.herokuapp.com/api/Assignment/',
+                    async: 'false',
+                    url: 'https://balham-college-db.herokuapp.com/api/Lecturer/',
                     success: function (data) {
                         // location.reload();
-                        j = 0;
-                        while (j < data.length){
-                            assignment = data[j];
-                            if (assignment.Lecturer == LecturerID){
-                                countAssignments = countAssignments+ 1;
-                            }
-                            j = j + 1;
+                        var assignmentcount;
+                        i = 0;
+
+                        while (i < data.length) {
+
+                            lecturer = data[i];
+                            // var assignmentID = lecturer.assignment;
+                            // assignmentcount = getCountAssignment(assignmentID);
+                            console.log(getCountAssignment);
+                            $("#lecturer_report").append("<hr>" +
+                                "<h3 id='h3'>Lecturer</h3>" +
+                                "Lecturer ID: " + lecturer.LecturerID +
+                                "<br>" + "Lecturer Last Name: " + lecturer.LastName +
+                                "<br>" + "Lecturer First Name: " + lecturer.FirstName +
+                                "<br>" + "Lecturer Street Address: " + lecturer.StreetAddress +
+                                "<br>" + "Lecturer Suburb: " + lecturer.Suburb +
+                                "<br>" + "Lecturer City: " + lecturer.City +
+                                "<br>" + "Lecturer Phone Number: " + lecturer.PhoneNumber +
+                                "<br>" + "Lecturer Email Address: " + lecturer.EmailAddress +
+                                "<br>" + "Lecturer Ranking: " + lecturer.Ranking +
+                                "<br>" + "Lecturer Type: " + lecturer.Type +
+                                // "<br>" + "Count of Assignments : " + assignmentcount +
+                                "<hr>");
+                            getCountAssignment(lecturer.LecturerID);
+
+                            i = i + 1;
                         }
-//                         $("#lecturer_report").append("<hr>" + "Total Count Assignments: " + countAssignments );
                     },
                     error: function (err) {
                         console.log(err);
                     }
                 });
 
-            }
-                        })
+
+                function getCountAssignment(LecturerID) {
+                    countAssignments = 0;
+
+                    console.log(LecturerID);
+                    $.ajax({
+                        type: 'Get',
+                        dataType: 'JSON',
+                        async: false ,
+                        url: 'https://balham-college-db.herokuapp.com/api/Assignment/',
+                        success: function (data) {
+                            // location.reload();
+                            j = 0;
+                            while (j < data.length) {
+                                assignment = data[j];
+                                if (assignment.Lecturer == LecturerID) {
+                                    countAssignments = countAssignments + 1;
+                                }
+                                j = j + 1;
+                            }
+                            $("#lecturer_report").append("<hr>" + "Total Count Assignments: " + countAssignments);
+                        },
+                        error: function (err) {
+                            console.log(err);
+                        }
+                    });
+
+                }
+            })
         });
 
     </script>
     <link rel="stylesheet" href="../Styles/styles.css">
 </head>
 <body>
+<img class="logo" src=" ../Images/Logo.png" />
+
+
 <div id="container">
-    
-    <img class="logo" src=" ../Images/Logo.png" />
 
     <h1>Produce Lecturer Report</h1>
     <hr>
     <br>
+
+
     <div id = "content">
+
+
+        <div class="fields">
             <label id="lecturer_report"></label>
+
+        </div>
 
     </div>
     <hr>
