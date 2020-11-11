@@ -34,6 +34,20 @@
                 }
             });
 
+
+                $("#add_student_butt").click(function () {
+                    if (confirm('Do you want to add another Student?')) {
+                        location.reload();
+                    }
+                    else
+                        {
+                        console.log("");
+                        window.location.href = "../MainMenu/enrolments-clerk-menu.html";
+                    }
+                });
+
+
+
             $("#add_student_but").click(function () {
                 lastname1 = $("#lastname_input").val();
                 firstname1 = $("#firstname_input").val();
@@ -43,17 +57,17 @@
                 phonenumber1 = $("#phonenumber_input").val();
                 emailaddress1 = $("#emailaddress_input").val();
                 status1 = $("#status_input").val();
-                
-                                     //clear errors
 
-            $("#lastname_input_err").text("");
-            $("#firstname_input_err").text("");
-            $("#streetaddress_input_err").text("");
-            $("#suburb_input_err").text("");
-            $("#city_input_err").text("");
-            $("#emailaddress_input_err").text("");
-            $("#phonenumber_input_err").text("");
-            $("#status_input_err").text("");
+                //clear errors
+
+                $("#lastname_input_err").text("");
+                $("#firstname_input_err").text("");
+                $("#streetaddress_input_err").text("");
+                $("#suburb_input_err").text("");
+                $("#city_input_err").text("");
+                $("#emailaddress_input_err").text("");
+                $("#phonenumber_input_err").text("");
+                $("#status_input_err").text("");
 
 
                 $.ajax({
@@ -70,15 +84,14 @@
                         PhoneNumber: phonenumber1,
                         Status: status1,
                     },
-                        success: function (data) {
-                            alert(' Student added successfully');
-                            if (confirm('Do you want to add another Student?')) {
-                                location.reload();}
-                            else{
-                                console.log("");
-                                window.location.href = "../MainMenu/enrolments-clerk-menu.html";
-                            }
-                            location.reload();
+                    success: function (data) {
+                        alert(' Student added successfully');
+                        if (confirm('Do you want to add another Student?')) {
+                            location.reload();}
+                        else{
+                            console.log("");
+                            window.location.href = "../MainMenu/enrolments-clerk-menu.html";
+                        }
                     },
                     error: function (err) {
                         // console.log(err);
@@ -113,34 +126,34 @@
 
             <div class="fields">
 
-        <!--    <p><label> Client ID: </label><input id="clientid_input" type="text" maxlength="25" size="25"></p>-->
-        <!--    <p id = "clientid_input_err"></p>-->
-        <p><input id="lastname_input" type="text" maxlength="25" size="25" placeholder="Last Name"></p>
-        <p id = "lastname_input_err"></p>
-        <p><input id="firstname_input" type="text" maxlength="25" size="25" placeholder="First Name"></p>
-        <p id = "firstname_input_err"></p>
-        <p><input id="streetaddress_input" type="text" maxlength="50" size="50" placeholder="Street Address"></p>
-        <p id = "streetaddress_input_err"></p>
-        <p><input id="suburb_input" type="text" maxlength="20" size="20" placeholder="Suburb"></p>
-        <p id = "suburb_input_err"></p>
-        <p><input id="city_input" type="text" maxlength="25" size="25" placeholder="City"></p>
-        <p id = "city_input_err"></p>
-        <p><input id="phonenumber_input" type="text" maxlength="16" size="16" placeholder="Phone Number"></p>
-        <p id = "phonenumber_input_err"></p>
-        <p><input id="emailaddress_input" type="text" maxlength="30" size="30"placeholder="Email Address"></p>
-        <p id = "emailaddress_input_err"></p>
+                <!--    <p><label> Client ID: </label><input id="clientid_input" type="text" maxlength="25" size="25"></p>-->
+                <!--    <p id = "clientid_input_err"></p>-->
+                <p><input id="lastname_input" type="text" maxlength="25" size="25" placeholder="Last Name"></p>
+                <p id = "lastname_input_err"></p>
+                <p><input id="firstname_input" type="text" maxlength="25" size="25" placeholder="First Name"></p>
+                <p id = "firstname_input_err"></p>
+                <p><input id="streetaddress_input" type="text" maxlength="50" size="50" placeholder="Street Address"></p>
+                <p id = "streetaddress_input_err"></p>
+                <p><input id="suburb_input" type="text" maxlength="20" size="20" placeholder="Suburb"></p>
+                <p id = "suburb_input_err"></p>
+                <p><input id="city_input" type="text" maxlength="25" size="25" placeholder="City"></p>
+                <p id = "city_input_err"></p>
+                <p><input id="phonenumber_input" type="text" maxlength="16" size="16" placeholder="Phone Number"></p>
+                <p id = "phonenumber_input_err"></p>
+                <p><input id="emailaddress_input" type="text" maxlength="30" size="30"placeholder="Email Address"></p>
+                <p id = "emailaddress_input_err"></p>
 
-        <p>
-            <select id="status_input">
-                <option value="">Select Student Status</option>
-                <option value="Part-Time">Part-Time</option>
-                <option value="Full-Time">Full-Time</option>
-            </select>
-            <p id="status_input_err"></p>
-        <button type="button" id="add_student_but">Add student</button>
-        <button type="button" ><a href="../MainMenu/enrolments-clerk-menu.html"> Return</a></button>
+                <p>
+                    <select id="status_input">
+                        <option value="">Select Student Status</option>
+                        <option value="Part-Time">Part-Time</option>
+                        <option value="Full-Time">Full-Time</option>
+                    </select>
+                <p id="status_input_err"></p>
+                <button type="button" id="add_student_but">Add student</button>
+                <button type="button" ><a href="../MainMenu/enrolments-clerk-menu.html"> Return</a></button>
 
-        <p></p>
+                <p></p>
             </div>
         </div>
     </div>
