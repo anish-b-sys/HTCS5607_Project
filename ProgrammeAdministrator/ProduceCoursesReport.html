@@ -36,7 +36,7 @@
                             enrolmentNumber = getTotalEnrolments(course.CourseID);
                             assessmentNumber = getCountAssessments(course.CourseID);
                             console.log(enrolmentNumber);
-                                $("#course_report").append(
+                                $("#course_report").append( "<hr>" +
                                     "<h3 id='h3'>Course</h3>" +
                                     "Course ID: " + course.CourseID +
                                     "<br>"+ " Course Name: " + course.CourseName +
