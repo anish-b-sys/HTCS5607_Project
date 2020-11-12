@@ -122,12 +122,12 @@
     <hr>
     <br>
         <h3>Note: fields marked '*' are required</h3>
-    <div id="content">
-
-        <div class="fields">
+    <div id="content">            
             <hr class = "subHR">
             <h2>Student</h2>
             <hr class = "subHR">
+            
+            <div class="fields">
             <p><select id="studentSelect">
                     <option value="">Select Student*</option>
                 </select></p>
@@ -137,9 +137,13 @@
             <p><input id="streetAddress" placeholder="Street Address" readonly></p>
             <p><input id="suburb" placeholder="Suburb" readonly></p>
             <p><input id="city" placeholder="City" readonly></p>
+        </div>
+        
             <hr class = "subHR">
             <h2>Enrolment</h2>
             <hr class = "subHR">
+        
+                <div class="fields">
             <p><select id="enrolmentSelect">
                     <option value="">Select Enrolment*</option>
                 </select></p>
@@ -147,9 +151,11 @@
             <p><input id="enrolmentYear" placeholder="Year" readonly></p>
             <p><input id="enrolmentSemester" placeholder="Semester" readonly></p>
             <p><input id="enrolmentCourse" placeholder="Course" readonly></p>
+        </div>
             <hr class = "subHR">
             <h2>Course</h2>
             <hr class = "subHR">
+                <div class="fields">
             <p><select id="courseSelect">
                     <option value="">Select Course*</option>
                 </select></p>
