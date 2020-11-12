@@ -44,34 +44,34 @@
     <script src="../Script/javaScript.js"></script>
 </head>
 <body>
-<div id="container">
-    <div id="content">
-    <hr>
-    <h1>Add Programme</h1>
-    <hr>
-    <form onsubmit ="return false">
+<form onsubmit ="return false">
+    <div id="container">
+        <img class="logo" src="../Images/Logo.png"/>
+        <h1>Add Programme</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+        <hr class = "subHR">
+        
+        <div id="content">
 
-        <div class="fields">
-
-            <p>*<input id="programmeName" type="text" max="30" placeholder="Programme Name"></p>
-            <p>*<input id="programmeLevel" type="number" min="1" max="10" placeholder="Level"></p>
-
+            <div class="fields">
+                <p><input id="programmeName" type="text" max="30" placeholder="Programme Name*"></p>
+                <p><input id="programmeLevel" type="number" min="1" max="10" placeholder="Level*"></p>
+           </div>
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+            
+        <div id = "buttonCase">
+            <button type="button" id="addProgrammeBut" class="actionButton">Add Programme</button>
+            <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
         </div>
-
-
-<hr>
-    <div align="center" id="requiredFields">
-
-        <p>Required Fields*</p>
-
-    </div>
-<hr>
-    <div id="buttonDiv">
-        <button type="button" id="addProgrammeBut" class="actionButton">Add Programme</button>
-                <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
-    </div>
-    </form>
+    <br>
+    
     </div>
 </div>
+</form>
 </body>
 </html>
