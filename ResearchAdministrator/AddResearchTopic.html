@@ -46,38 +46,39 @@
 
 </head>
 <body>
-
+<form onsubmit ="return false">
+    
 <div id="container">
     <div id="content">
-        <form onsubmit ="return false">
-            <hr>
+        <img class = "logo" src="../Images/Logo.png"/>
         <h1>Add Research Topic</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+        
+        <div id ="content">
+            <div class="fields">
+                 <p><input id="topicDescription" type="text" maxlength="40" placeholder="Description*"></p>
+                 <p><select id="topicImpact">
+                     <option>Impact*</option>
+                     <option>High</option>
+                     <option>Medium</option>
+                     <option>Low</option></select>
+                </p>
+            </div>
             <hr>
-
-        <div class="fields">
-            <p>*<input id="topicDescription" type="text" maxlength="40" placeholder="Description"></p>
-            <p>*<select id="topicImpact">
-                <option>Impact</option>
-                <option>High</option>
-                <option>Medium</option>
-                <option>Low</option>
-            </select></p>
-        </div>
-
-
-
-
-    <hr>
-    <div id="requiredFields">
-        <p>Required Fields*</p>
-    </div>
-    <hr>
-    <div id="buttonDiv">
-        <button id="addTopicBut" >Add Research Topic</button>
-        <a href="../MainMenu/"><button type="button" id="returnBut">Return</button></a>
-    </div>
-    </form>
+            <h3>Copyrighted ©Balham College</h3>
+            <hr>
+            <br>
+            <div id = buttonCase>
+                  <button type="button" id="addTopicBut" class="actionButton">Add Research Topic</button>
+                  <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
+             </div>
+            <br>
+        </div> 
+    
     </div>
 </div>
+</form>
 </body>
 </html>
