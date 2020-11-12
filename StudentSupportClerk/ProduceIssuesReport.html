@@ -117,6 +117,27 @@
 
 
             }
+            
+                        function getStudent(StudentID) {
+                student = '';
+                $.ajax({
+                    type: 'Get',
+                    dataType: 'JSON',
+                    async: false,
+                    url: 'https://balham-college-db.herokuapp.com/api/Student/',
+                    success: function (data) {
+                        // location.reload();
+                            student = data;
+
+
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+                return student;
+            }
+
 
             function print1(){
             window.print();
