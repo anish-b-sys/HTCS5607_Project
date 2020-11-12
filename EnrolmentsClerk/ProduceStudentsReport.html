@@ -99,7 +99,7 @@
                 url: 'https://balham-college-db.herokuapp.com/api/Course/' + CourseID,
                 success: function (data) {
                     // location.reload();
-                    $("#student_report").append(<"hr>"
+                    $("#student_report").append(<"hr">
                         +"<br>Course Name: "+ data.CourseName);
                     getProgrammeName(data.Programme);
 
