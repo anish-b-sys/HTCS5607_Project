@@ -65,50 +65,44 @@
 
 </head>
 <body>
-
+<form onsubmit ="return false">
 <div id="container">
+    <img class = "logo" src="../Images/Logo.png"/>
+    <h1>Add Assessment</h1>
+    <hr>
     <div id="content">
-        <hr>
-        <h1>Add Assessment</h1>
-        <hr>
-            <form onsubmit ="return false">
-
-            <div class="fields">
-
+        
             <h2>Course</h2>
-            <tr><td>*<select id="courseSelect">
-                <option value = "">Select Course</option>
+            <tr><td><select id="courseSelect">
+                <option value = "">Select Course*</option>
             </select></td></tr>
 
-
-        </div>
-            <hr>
             <div class="fields">
             <h2>Assessment Details</h2>
             <hr>
-            <p>*<input id="assessmentNumber" type="number" min="1" max="5" placeholder="Number"></p>
-            <p>*<input id="assessmentName" maxlength="30" placeholder="Name"></p>
-            <p>*<select id="assessmentTypeSelect">
-                <option value = "">Type</option>
+            <p><input id="assessmentNumber" type="number" min="1" max="5" placeholder="Number*"></p>
+            <p><input id="assessmentName" maxlength="30" placeholder="Name*"></p>
+            <p><select id="assessmentTypeSelect">
+                <option value = "">Type*</option>
                 <option value = "Assignment">Assignment</option>
                 <option value = "Written Test">Written Test</option>
                 <option value = "Practical Test">Practical Test</option>
                 <option value = "Final Exam">Final Exam</option></select></p>
-            <p>*<input id="assessmentWeighting" type="number" min="10" max="100" placeholder="Weighting"></p>
-            <p>*<input id="assessmentMaxMark" type="number" min="50" max="200" placeholder="Maximum Mark"></p>
-        </div>
+            <p><input id="assessmentWeighting" type="number" min="10" max="100" placeholder="Weighting*"></p>
+            <p><input id="assessmentMaxMark" type="number" min="50" max="200" placeholder="Maximum Mark*"></p>
 
-        <hr>
-        <div id="requiredFields">
-            <p>Required Fields*</p>
         </div>
         <hr>
-        <div>
-            <button id="addAssessmentBut" >Add Assessment</button>
-            <a href="../MainMenu/"><button type = "button" id = "returnBut" >Return</button></a>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+        <div id = buttonCase>
+            <button type="button" id="addAssessmentBut" class="actionButton">Add Assessment</button>
+            <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
         </div>
-        </form>
+        <br>
     </div>
 </div>
+</form>
 </body>
 </html>
