@@ -60,35 +60,44 @@
     <script src="../Script/javaScript.js"></script>
 </head>
 <body>
-<div id="container">
-    <form onsubmit ="return false">
+<form onsubmit ="return false">
+    <div id="container">
+        <img class="logo" src="../Images/Logo.png"/>
+        <h1>Add Course</h1>
         <hr>
-    <h1>Add Course</h1>
-        <hr>
-    <div>
-        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+    
+        <div id ="content">
+            
         <div class="fields">
 
-            <p>*<input id="courseName" type="text" max="40" placeholder="Course Name"></p>
-            <p>*<input id="courseCredits" type="number" min="5" max="120" placeholder="Credits"></p>
-            <p>*<input id="courseFee" type="number" min="200" max="8000" placeholder="Fee"></p>
-            <p>*<select id="courseStatus"><option>Status</option><option>Current</option><option>Suspended</option></option></select></p>
-            <p>*<select id="programmeSelect"><option>Programme</option></select></p>
-
-
-        </div>
-        <hr>
-    <div id="requiredFields">
-        <p>Required Fields*</p>
-        <hr>
-    </div>
+            <p><input id="courseName" type="text" max="40" placeholder="Course Name*"></p>
+            <p><input id="courseCredits" type="number" min="5" max="120" placeholder="Credits*"></p>
+            <p><input id="courseFee" type="number" min="200" max="8000" placeholder="Fee*"></p>
+            <p><select id="courseStatus"><option>Status*</option>
+                <option>Current</option>
+                <option>Suspended</option>
+                </option></select>
+            </p>
+            <p><select id="programmeSelect">
+                <option>Programme*</option>
+            </select></p>
+        </div> 
     <hr>
-    <div id="buttonDiv">
-        <button type="button" id="addCourseBut" class="actionButton">Add Course</button>
-                <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+
+        <div id = "buttonCase">
+
+            <button type="button" id="addCourseBut" class="actionButton">Add Course</button>
+            <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
+        </div>
+    <br>
     </div>
-    </div>
-    </form>
-</div>
+    
+    </div> 
+</form>
 </body>
 </html>
