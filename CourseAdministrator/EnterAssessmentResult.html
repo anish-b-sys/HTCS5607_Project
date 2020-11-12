@@ -81,59 +81,44 @@
     <script src="../Script/javaScript.js"></script>
 </head>
 <body>
+    <form onsubmit="return false">
 <div id="container">
+    <img class="logo" src="../Images/Logo.png"/>
+    
+    <h1>Enter Assessment Result</h1>
+    <hr>
+    <br>
+    <h3>Note: fields marked '*' are required</h3>
     <div id="content">
-        <form onsubmit="return false">
-
-
-            <hr>
-            <h1 align="center">Enter Assessment Result</h1>
-            <hr>
-
+        <hr class = "subHR">
+        <h2>Result</h2>
+        <hr class = "subHR">
+        
+            <div class="fields">
+            <p><select id="enrolmentSelect">
+                    <option>Select Enrolment*</option>
+                </select></p>
+            <p><input id="resultMark" placeholder="Mark*" type="number" min="0" max="200"></p>
+            <p><input id="resultDate" placeholder="Date*" type="date"></p>
+        </div>
+        
+        <hr class = "subHR">
+        <h2>Assessments</h2>
+        <hr class = "subHR">
 
             <div class="fields">
-                <hr>
-            <h2>Result</h2>
-                <hr>
-            <p>
-                *<select id="enrolmentSelect">
-                    <option>Select Enrolment</option>
-                </select>
-            </p>
-            <p>
-                *<input id="resultMark" placeholder="Mark" type="number" min="0" max="200">
-            </p>
-            <p>
-                *<input id="resultDate" placeholder="Date" type="date">
-            </p>
+                <p><select id="assessmentSelect">
+                    <option>Select Assessment*</option>
+                    </select></p>
+            </div>
+        
+        <div id = "buttonCase">
+            <button type="button" id="enterResultBut" class="actionButton">Enter Result</button>
+            <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
         </div>
 
-            <div class="fields">
-                <hr>
-                <h2 >Assessments</h2>
-                <hr>
-                <p>
-                    *<select id="assessmentSelect">
-                    <option>Select Assessment</option>
-                    </select>
-                </p>
-            </div>
-
-            <div id="requiredFields">
-                <hr>
-                <p>
-                <td>Required Fields*</td>
-                </p>
-                <hr>
-    </div>
-
-    <div id="buttonDiv">
-        <button id="enterResultBut">Enter Result</button>
-        <a href="../MainMenu/"><button type="button" id = "returnBut" >Return</button></a>
-    </div>
-
-    </form>
     </div>
 </div>
+</form>
 </body>
 </html>
