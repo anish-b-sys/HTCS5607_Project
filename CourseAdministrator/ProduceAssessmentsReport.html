@@ -39,7 +39,7 @@
                             "<br> " + " Name: " + assessment.AssessmentName +
                             "<br>" + " Type: " + assessment.Type +
                             "<br>" + "Weighting: " + assessment.Weighting+
-                            "<br>" + "Maximum Mark: " + assessment.MaximumMark);
+                            "<br>" + "Maximum Mark: " + assessment.MaximumMark + "<hr>");
                         getCourseName(assessment.Course)
                         result = getResults(assessment.Course);
                         getStudentResult(assessment.Course);
@@ -100,8 +100,7 @@
 
                     course = data;
                     //
-                    $("#assessment_report").append( "<br>"+
-                        "<h3 id='h3'>Course</h3>" +
+                    $("#assessment_report").append(
                         "Course Name: " + course.CourseName +"<br>");
                 },
                 error: function (err) {
@@ -120,8 +119,8 @@
                 success: function (data) {
                     // location.reload();
                     $("#assessment_report").append(
-                        "<h3 id='h3'>Student</h3>" +
-                         " Last Name: "+ data.LastName +
+                        "<hr>" +
+                         "Student Last Name: "+ data.LastName +
                         "<br>Student First Name: "+ data.FirstName);
 
                 },
