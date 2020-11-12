@@ -9,6 +9,7 @@
             crossorigin="anonymous">
     </script>
     <script>
+ 
         $(document).ready(function () {
 
 
@@ -25,12 +26,12 @@
             var i = 0;
             while (i < topics.length) {
                 topic = topics[i];
-                $("#topicSelect").append("<option value='" + topic.TopicID + "'>" + topic.Description + " </option>");
+                $("#topicSelect").append("<option value='" + topic.ResearchTopicID + "'>" + topic.Description + " </option>");
                 i = i + 1;
 
             }
             $("#projectSelect").change(function () {
-                project = getProjectByLecturer($("#projectSelect").val());
+                project = getResearchProjects($("#projectSelect").val());
 
                 $("#output").val(project.Output);
                 $("#projectDescription").val(project.Description);
@@ -45,15 +46,7 @@
                 $("#lecturerFirstName").val(lecturer.FirstName);
                 $("#lecturerLastName").val(lecturer.LastName);
 
-                projects = getProjectByLecturer($("#projectSelect").val());
-                $("#projectSelect").empty();
-                $("#projectSelect").append("<option value=''>Select Project</option>");
-                var i = 0;
-                while (i < projects.length) {
-                    project = projects[i];
-                    $("#projectSelect").append("<option value='" + project.ResearchProjectID + "'>" + project.Description + " " + project.Lecturer + "</option>");
-                    i = i + 1;
-                }
+
                 $("#projectSelect").change(function () {
                     project = getProjectByLecturer($("#projectSelect").val());
 
