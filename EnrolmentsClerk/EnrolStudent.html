@@ -116,104 +116,65 @@
 </head>
 <body>
 <div id="container">
-    <hr>
+    <img class="logo" src="../Images/Logo.png"/>
     <h1>Enrol Student</h1>
     <hr>
+    <br>
+        <h3>Note: fields marked '*' are required</h3>
+    <br>
     <div id="content">
     <form onsubmit="return false">
 
         <div class="fields">
             <hr>
-            <h2 >Student</h2>
+            <h2>Student</h2>
             <hr>
-            <p>
-                *<select id="studentSelect">
-                    <option value="">Select Student</option>
-                </select>
-            </p>
-            <p>
-                <input id="studentID" placeholder="Student ID" readonly>
-            </p>
-            <p>
-                <input id="lastName" placeholder="Last Name" readonly>
-            </p>
-            <p>
-                <input id="firstName" placeholder="First Name" readonly>
-            </p>
-            <p>
-                <input id="streetAddress" placeholder="Street Address" readonly>
-            </p>
-            <p>
-                <input id="suburb" placeholder="Suburb" readonly>
-            </p>
-            <p>
-                <input id="city" placeholder="City" readonly>
-            </p>
-            <hr>
-        </div>
-        <div class="fields">
+            <p><select id="studentSelect">
+                    <option value="">Select Student*</option>
+                </select></p>
+            <p><input id="studentID" placeholder="Student ID" readonly></p>
+            <p><input id="lastName" placeholder="Last Name" readonly></p>
+            <p><input id="firstName" placeholder="First Name" readonly></p>
+            <p><input id="streetAddress" placeholder="Street Address" readonly></p>
+            <p><input id="suburb" placeholder="Suburb" readonly></p>
+            <p><input id="city" placeholder="City" readonly></p>
             <hr>
             <h2>Enrolment</h2>
             <hr>
-            <p>
-                *<select id="enrolmentSelect">
-                    <option value="">Select Enrolment</option>
-                </select>
-            </p>
-            <p>
-                <input id="enrolmentNumber" placeholder="Enrolment Number" readonly>
-            </p>
-            <p>
-                <input id="enrolmentYear" placeholder="Year" readonly>
-            </p>
-            <p>
-                <input id="enrolmentSemester" placeholder="Semester" readonly>
-            </p>
-            <p>
-                <input id="enrolmentCourse" placeholder="Course" readonly>
-            </p>
-        </div>
-        <div class="fields">
+            <p><select id="enrolmentSelect">
+                    <option value="">Select Enrolment*</option>
+                </select></p>
+            <p><input id="enrolmentNumber" placeholder="Enrolment Number" readonly></p>
+            <p><input id="enrolmentYear" placeholder="Year" readonly></p>
+            <p><input id="enrolmentSemester" placeholder="Semester" readonly></p>
+            <p><input id="enrolmentCourse" placeholder="Course" readonly></p>
             <hr>
             <h2>Course</h2>
             <hr>
-            <p>
-                *<select id="courseSelect">
-                    <option value="">Select Course</option>
-                </select>
-            </p>
-            <p>
-                <input id="courseID" placeholder="Course ID" readonly>
-            </p>
-            <p>
-                <input id="courseName" placeholder="Course Name" readonly>
-            </p>
-            <p>
-                *<input id="year" type="number" min="2018" max="2050" placeholder="Year">
-            </p>
-            <p>
-                *<input id="semester" type="number" min="1" max="3" placeholder="Semester">
-            </p>
-            <p>
-                *<select id="statusSelect">
-                    <option value="">Status</option>
+            <p><select id="courseSelect">
+                    <option value="">Select Course*</option>
+                </select></p>
+            <p><input id="courseID" placeholder="Course ID" readonly></p>
+            <p><input id="courseName" placeholder="Course Name" readonly></p>
+            <p><input id="year" type="number" min="2018" max="2050" placeholder="Year*"></p>
+            <p><input id="semester" type="number" min="1" max="3" placeholder="Semester*"></p>
+            <p><select id="statusSelect">
+                    <option value="">Status*</option>
                     <option value="Pending">Pending</option>
                     <option value="Paid">Paid</option>
                     <option value="Complete">Complete</option>
-                </select>
-            </p>
+                </select></p>
         </div>
-        <div id="requiredFields">
-            <hr>
-            <p>
-                Required Fields*
-            </p>
-            <hr>
-        </div>
-        <div id="buttonDiv">
+        <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+
+        <div id="buttoncase">
             <button id="enrolStudentBut">Enrol Student</button>
             <a href="../MainMenu/"><button type="button" id="returnBut">Return</button></a>
         </div>
+        <br>
     </form>
     </div>
 </div>
