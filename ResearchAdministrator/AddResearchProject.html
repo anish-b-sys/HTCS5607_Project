@@ -91,84 +91,63 @@
     <script src="../Script/javaScript.js"></script>
 </head>
 <body>
+    <form onsubmit="return false">
 <div id="container">
+    <img class="logo" src="../Images/Logo.png"/>
     <h1>Add Research Project</h1>
     <hr>
-    <form onsubmit="return false">
+    <br>
+    <h3>Note: fields marked '*' are required</h3>
+    <hr class = "subHR">
+    
     <div id="content">
         <div class="fields">
-            <hr>
             <h2 >Lecturer</h2>
-            <hr>
-            <p>
-                <select id="lecturerSelect">
-                    <option value="">Select Lecturer</option>
-                </select>*
-            </p>
-            <p>
-                <input id="lecturerID" placeholder="Lecturer ID" readonly>
-            </p>
-            <p>
-                <input id="lecturerLastName" placeholder="Last Name" readonly>
-            </p>
-            <p>
-                <input id="lecturerFirstName" placeholder="First Name" readonly>
-            </p>
-            <hr>
+            <hr class = "subHR">
+            <p><select id="lecturerSelect">
+                    <option value="">Select Lecturer*</option>
+                </select></p>
+            <p><input id="lecturerID" placeholder="Lecturer ID*" readonly></p>
+            <p><input id="lecturerLastName" placeholder="Last Name*" readonly></p>
+            <p><input id="lecturerFirstName" placeholder="First Name*" readonly></p>
         </div>
 
         <div class="fields">
+            <hr class = "subHR">
             <h2>Lecturer's Research Projects</h2>
-            <hr>
-            <p>
-                <select id="projectSelect">
+            <hr class = "subHR">
+            <p><select id="projectSelect">
                     <option value="">Select Project</option>
-                </select>
-            </p>
-            <p>
-                <input id="output" placeholder="Output" readonly>
-            </p>
-            <p>
-                <input id="projectDescription" placeholder="Description" readonly>
-            </p>
-            <p>
-                <input id="projectTopic" placeholder="Research Topic" readonly>
-            </p>
-        </div>
-        <hr>
-        <div class="fields">
+                </select></p>
+            <p><input id="output" placeholder="Output" readonly></p>
+            <p><input id="projectDescription" placeholder="Description" readonly></p>
+            <p><input id="projectTopic" placeholder="Research Topic" readonly></p>
+
+            <hr class = "subHR">
             <h2>Research Project Details</h2>
-            <hr>
-            <p>
-                <select id="topicSelect">
-                    <option value="">Select Topic</option>
-                </select>*
-            </p>
-            <p>
-                <input id="newOutput" placeholder="Output">*
-            </p>
-            <p>
-                <input id="startDate" type="date" placeholder="Start Date">*
-            </p>
-            <p>
-                <input id="description" type="text" maxlength="40" placeholder="Description">*
-            </p>
+            <hr class = "subHR">
+            <p><select id="topicSelect">
+                    <option value="">Select Topic*</option>
+                </select></p>
+            <p><input id="newOutput" placeholder="Output*"></p>
+            <p><input id="startDate" type="date" placeholder="Start Date*"></p>
+            <p><input id="description" type="text" maxlength="40" placeholder="Description*"></p>
         </div>
 
     </div>
         <hr>
-        <div id="requiredFields">
-            <p>
-                Required Fields*
-            </p>
-            <hr>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+    
+    <div id = buttonCase>
+            <button type="button" id="addProjectBut" class="actionButton">Add Research Project</button>
+            <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
         </div>
-
-        <div id="buttonDiv">
-            <button id="addProjectBut">Add Research Project</button>
-            <a href="../MainMenu/"><button type="button" id="returnBut">Return</button></a>
         </div>
-    </form>
+        <br>
+    
 </div>
+    </form>
 </body>
 </html>
