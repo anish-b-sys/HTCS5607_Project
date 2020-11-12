@@ -43,7 +43,7 @@
                                     "<br>"+" Course Credits: " + course.Credits +
                                     "<br>" +" Course Status: " + course.Status+
                                     "<br>" +" Course Fee: " + course.Fee + "<hr>" 
-                                   +" Total number of Students Enroled in each Course: " + enrolmentNumber+
+                                   +" Total number of Students Enroled in each Course: " + enrolmentNumber+   
                                     "<br>" +" Total number Assessments in each Course: " + assessmentNumber+
                                     "<br>");
                                 // getClientReport(cases.Client);
@@ -74,7 +74,7 @@
                     success: function (data) {
                         // location.reload();
                         programme = data;
-                        $("#course_report").append(
+                        $("#course_report").append(  "<hr>" +
                             "Programme Name: " + programme.ProgrammeName + "<hr>");
 
                     },
