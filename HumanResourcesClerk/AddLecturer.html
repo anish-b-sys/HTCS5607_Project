@@ -59,42 +59,52 @@
 
 </head>
 <body>
-<div id="container">
-    <div id="content">
-
-        <form onsubmit ="return false">
-
-            <hr>
-            <h1>Add Lecturer</h1>
-            <hr>
+<form onsubmit ="return false">
+    <div id="container">
+        <img class="logo" src="../Images/Logo.png"/>
+        <h1>Add Lecturer</h1>
+        <hr>
+        <br>
+        <h3>Note: fields marked '*' are required</h3>
+        <hr class = "subHR">
+        
+        <div id="content">
 
             <div class="fields">
-    <p>*<input id="lecturerLastName" type="text" maxlength="30" placeholder="Last Name"></p>
-    <p>*<input id="lecturerFirstName" type="text" maxlength="30" placeholder="First Name"></p>
-    <p>*<input id="lecturerAddress" type="text" maxlength="50" placeholder="Street Address"></p>
-    <p>*<input id="lecturerSuburb" type="text" maxlength="25" placeholder="Suburb"></p>
-    <p>*<input id="lecturerCity" type="text" maxlength="25" placeholder="City"></p>
-    <p>*<input id="lecturerPhone" type="number" maxlength="16" placeholder="Phone"></p>
-    <p>*<input id="lecturerEmail" type="text" min="1" max="30" placeholder="Email"></p>
-    <p>*<select id="lecturerRanking"><option>Lecturer Ranking</option><option>A</option><option>B</option><option>C</option></option></select></p>
-    <p>*<select id="lecturerType"><option>Lecturer Type</option><option>Academic</option><option>Contract</option></option></select></p>
+              <p><input id="lecturerLastName" type="text" maxlength="30" placeholder="Last Name*"></p>
+              <p><input id="lecturerFirstName" type="text" maxlength="30" placeholder="First Name*"></p>
+              <p><input id="lecturerAddress" type="text" maxlength="50" placeholder="Street Address*"></p>
+              <p><input id="lecturerSuburb" type="text" maxlength="25" placeholder="Suburb*"></p>
+              <p><input id="lecturerCity" type="text" maxlength="25" placeholder="City*"></p>
+              <p><input id="lecturerPhone" type="number" maxlength="16" placeholder="Phone"></p>
+              <p><input id="lecturerEmail" type="text" min="1" max="30" placeholder="Email*"></p>
+              <p>*<select id="lecturerRanking"><option>Lecturer Ranking*</option>
+                  <option>A</option>
+                  <option>B</option>
+                  <option>C</option>
+                  </option></select>
+            </p>
+              <p><select id="lecturerType"><option>Lecturer Type*</option>
+                  <option>Academic</option>
+                  <option>Contract</option>
+                  </option></select>
+               </p>
+           </div>
 
-    </div>
             <hr>
-            <div id="requiredFields">
-            <p>Required Fields*</p>
-            </div>
-
+            <h3>Copyrighted ©Balham College</h3>
             <hr>
-            <div id="buttonDiv">
-                <button type="button" id="addLecturerBut" class="actionButton">Add Lecturer</button>
-            <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
+            <br>
+    
+    
+    <div id = "buttonCase">
+            <button type="button" id="addLecturerBut" class="actionButton">Add Lecturer</button>
+            <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
     </div>
-
-    </form>
 
     </div>
 
 </div>
+</form>
 </body>
 </html>
