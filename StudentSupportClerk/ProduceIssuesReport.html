@@ -36,8 +36,10 @@
                         Issue = data[i];
                         enrolment = getEnrolment(Issue.Enrolment);
                         course = getCourseInfo(enrolment.Course);
-                        student = getStudent(enrolment.Student);
-                        console.log(enrolment);
+                        getStudentName(enrolment.Student);
+//                                                     getStudentName(assessment[k].Enrolment)
+
+                        console.log(student);
                         $("#issues_report").append("<hr>" +
                             "<h3 id='h3'>Issue</h3>" +
                             "Issue ID: " + Issue.IssueID +
@@ -46,9 +48,9 @@
                             "<br>" + " Action Taken: " + Issue.ActionTaken +
                             "<br>" + " Enrolment Number: " + Issue.Enrolment +
                             "<br>" + " Course: " + course.CourseName +
-                            "<br>" + " Student Lastname: " + student.LastName +
-                            "<br>" + " Student Firstname: " + student.FirstName +
-                            "<br>" + "<br>");
+//                             "<br>" + " Student Lastname: " + student.LastName +
+//                             "<br>" + " Student Firstname: " + student.FirstName +
+                           "<br>");
 
                         getCourseName(Issue.Course);
                         console.log(getCourseName);
@@ -117,26 +119,27 @@
 
 
             }
-            
-                        function getStudent(StudentID) {
-                student = '';
-                $.ajax({
-                    type: 'Get',
-                    dataType: 'JSON',
-                    async: false,
-                    url: 'https://balham-college-db.herokuapp.com/api/Student/',
-                    success: function (data) {
-                        // location.reload();
-                            student = data;
+        function getStudentName(StudentID){
+            $.ajax({
+                type: 'Get',
+                dataType: 'JSON',
+                async: false,
+                url: 'https://balham-college-db.herokuapp.com/api/Student/' + StudentID,
+                success: function (data) {
+                    // location.reload();
+                    $("#assessment_report").append(
+                        "<hr>" +
+                         "Student Last Name: "+ data.LastName +
+                        "<br>Student First Name: "+ data.FirstName);
 
+                },
+                error: function (err) {
+                    console.log(err);
+                }
+            });
+            return assessment;
 
-                    },
-                    error: function (err) {
-                        console.log(err);
-                    }
-                });
-                return student;
-            }
+        }
 
 
             function print1(){
