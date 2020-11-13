@@ -33,18 +33,17 @@
                             Project = data[i];
                             $("#research_report").append( "<hr>" +
                                 "<h3 id='h3'>Research Project</h3>" +
-                                 "<br>Research Project Description: " + Project.Description +
+                                 "<hr>" + "Research Project Description: " + Project.Description +
                                 "<br>Research Project Output: " + Project.Output +
                                 "<br>Research Project Start Date: " + Project.StartDate +
-                                "<br>" + "<hr>");
+                                "<br>" );
                             topics = getTopic(Project.ProjectID);
                             getLecturerName(Project.Lecturer);
 
 
                             k = 0;
                             while (k < topics.length) {
-                                $("#research_report").append("<br>" +
-                                    "<h3 id='h3'>Research Topic</h3>" +
+                                $("#research_report").append("<hr>" +
                                     "<br>Research Topic Description: " + topics[k].Description +
                                     "<br>Research Topic Impact: " + topics[k].Impact);
 
@@ -100,8 +99,7 @@
                         // lecturer = data;
 
                         $("#research_report").append(
-                            "<h3 id='h3'>Lecturer</h3>" +
-                            "<br>" + " Last Name: " + data.LastName
+                            "<hr>" + " Last Name: " + data.LastName
                             + "<br>" + " First Name: " + data.FirstName + "<hr>");
 
                     },
