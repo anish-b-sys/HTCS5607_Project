@@ -14,7 +14,7 @@
 
             $("#addTopicBut").click(function () {
                 topicdescription = $("#topicDescription").val();
-                impact = $("#topicImpact").val();
+                impact = $("#topicinput").val();
 
                 $.ajax({
                     type: 'POST',
@@ -46,41 +46,33 @@
 
 </head>
 <body>
-<form onsubmit ="return false">
-    
+
 <div id="container">
     <div id="content">
-        <img class = "logo" src="../Images/Logo.png"/>
+        <form onsubmit ="return false">
+            <hr>
         <h1>Add Research Topic</h1>
-        <hr>
-        <br>
-        <h3>Note: fields marked '*' are required</h3>
-        
-        
-        <div id ="content">
-            <div class="fields">
-                <hr class = "subHR">
-                 <p><input id="topicDescription" type="text" maxlength="40" placeholder="Description*"></p>
-                 <p><select id="topicImpact">
-                     <option>Impact*</option>
-                     <option>High</option>
-                     <option>Medium</option>
-                     <option>Low</option></select>
-                </p>
-            </div>
             <hr>
-            <h3>Copyrighted ©Balham College</h3>
-            <hr>
-            <br>
-            <div id = buttonCase>
-                  <button type="button" id="addTopicBut" class="actionButton">Add Research Topic</button>
-                  <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
-             </div>
-            <br>
-        </div> 
-    
+
+        <div class="fields">
+            <p>*<input id="topicDescription" type="text" maxlength="40" placeholder="Description"></p>
+            <p>*<input id="topicinput" type="text" placeholder="Impact"></p>
+        </div>
+
+
+
+
+    <hr>
+    <div id="requiredFields">
+        <p>Required Fields*</p>
+    </div>
+    <hr>
+    <div id="buttonDiv">
+        <button id="addTopicBut" >Add Research Topic</button>
+        <a href="../MainMenu/research-administrator-menu.html"><button type="button" id="returnBut">Return</button></a>
+    </div>
+    </form>
     </div>
 </div>
-</form>
 </body>
 </html>
