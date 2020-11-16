@@ -46,33 +46,31 @@
 
 </head>
 <body>
-
+<form onsubmit ="return false">
+    
 <div id="container">
+    <img class="logo" src=" ../Images/Logo.png" />
+    <h1>Add Research Topic</h1>
+    <hr>
+    
     <div id="content">
-        <form onsubmit ="return false">
-            <hr>
-        <h1>Add Research Topic</h1>
-            <hr>
 
         <div class="fields">
-            <p>*<input id="topicDescription" type="text" maxlength="40" placeholder="Description"></p>
-            <p>*<input id="topicinput" type="text" placeholder="Impact"></p>
+            <p><input id="topicDescription" type="text" maxlength="40" placeholder="Description*"></p>
+            <p><input id="topicinput" type="text" placeholder="Impact*"></p>
         </div>
 
-
-
-
     <hr>
-    <div id="requiredFields">
-        <p>Required Fields*</p>
-    </div>
-    <hr>
-    <div id="buttonDiv">
-        <button id="addTopicBut" >Add Research Topic</button>
-        <a href="../MainMenu/research-administrator-menu.html"><button type="button" id="returnBut">Return</button></a>
-    </div>
-    </form>
+        <h3>Copyrighted ©Balham College</h3>
+        <hr>
+        <br>
+        <div id = buttonCase>
+            <button type="button" id="addTopicBut" class="actionButton">Add Research Topic</button>
+            <a href="../MainMenu/"><button type="button" id = "returnButton" >Return</button></a>
+        </div>
+    <br>
     </div>
 </div>
+</form>
 </body>
 </html>
