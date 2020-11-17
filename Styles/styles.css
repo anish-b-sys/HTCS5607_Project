@@ -145,8 +145,11 @@ a {
     color: white;
 }
 textarea{
- resize: vertical;
- min-height: 25px;
- max-height: 75px;
+    resize: vertical;
+    min-height: 25px;
+    max-height: 75px;
+   font-size: large;
+   width: 400px;
+
 
 }
