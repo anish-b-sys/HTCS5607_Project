@@ -24,43 +24,43 @@
                 console.log("holaMiha");
 
                 $.ajax({
-                type: 'Get',
+                    type: 'Get',
                     // async: false,
-                dataType: 'JSON',
-                url: 'https://balham-college-db.herokuapp.com/api/Issue/',
-                success: function (data) {
-                    // location.reload();
+                    dataType: 'JSON',
+                    url: 'https://balham-college-db.herokuapp.com/api/Issue/',
+                    success: function (data) {
+                        // location.reload();
 
-                    i = 0;
-                    while (i < data.length) {
-                        Issue = data[i];
-                        enrolment = getEnrolment(Issue.Enrolment);
-                        course = getCourseInfo(enrolment.Course);
-                        getStudent(enrolment.Student);
-                        console.log(student);
-                        $("#issues_report").append("<hr>" +
-                            "<h3 id='h3'>Issue</h3>" +
-                            "Issue ID: " + Issue.IssueID +
-                            "<br>" + " Issue Description: " + Issue.IssueDescription +
-                            "<br>" + " Issue Date: " + Issue.IssueDate +
-                            "<br>" + " Action Taken: " + Issue.ActionTaken +
-                            "<br>" + " Enrolment Number: " + Issue.Enrolment +
-                            "<br>" + " Course: " + course.CourseName +
-                            "<br>" + " Student Lastname: " + student.LastName +
-                            "<br>" + " Student Firstname: " + student.FirstName +
-                           "<br>");
+                        i = 0;
+                        while (i < data.length) {
+                            Issue = data[i];
+                            enrolment = getEnrolment(Issue.Enrolment);
+                            course = getCourseInfo(enrolment.Course);
+                            getStudent(enrolment.Student);
+                            console.log(student);
+                            $("#issues_report").append("<hr>" +
+                                "<h3 id='h3'>Issue</h3>" +
+                                "Issue ID: " + Issue.IssueID +
+                                "<br>" + " Issue Description: " + Issue.IssueDescription +
+                                "<br>" + " Issue Date: " + Issue.IssueDate +
+                                "<br>" + " Action Taken: " + Issue.ActionTaken +
+                                "<br>" + " Enrolment Number: " + Issue.Enrolment + "<hr>"
+                                 + " Course: " + course.CourseName +
+                                "<hr>" + " Student Lastname: " + student.LastName +
+                                "<br>" + " Student Firstname: " + student.FirstName +
+                                "<br>");
 
-                        getCourseName(Issue.Course);
-                        console.log(getCourseName);
+                            getCourseName(Issue.Course);
+                            console.log(getCourseName);
 
-                        i = i + 1;
+                            i = i + 1;
+                        }
+                    },
+                    error: function (err) {
+                        console.log(err);
                     }
-                },
-                error: function (err) {
-                    console.log(err);
-                }
+                });
             });
-        });
 
 
             function getEnrolments(EnrolmentID) {
@@ -102,7 +102,7 @@
                         course = data;
                         //
                         $("#issues_report").append("<br>"
-                        + "<h3 id='h3'>Course</h3>" +
+                            + "<h3 id='h3'>Course</h3>" +
                             "Course Name: " + course.CourseName +"<br>");
                         console.log("hollllaaaaaa");
                     },
@@ -123,10 +123,10 @@
                     type: 'Get',
                     dataType: 'JSON',
                     async: false,
-                    url: 'https://balham-college-db.herokuapp.com/api/Student/',
+                    url: 'https://balham-college-db.herokuapp.com/api/Student/' + StudentID,
                     success: function (data) {
                         // location.reload();
-                            student = data;
+                        student = data;
 
 
                     },
@@ -140,17 +140,15 @@
 
 
             function print1(){
-            window.print();
-        }
+                window.print();
+            }
 
         });
 
     </script>
-    <script src="js/script.js"></script>
+    <script src="../script/javaScript.js"></script>
     <script src="https://marshall942.github.io/BalhamCollege/js/script.js"></script>
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../Styles/styles.css">
-    <script src="../Script/script.js"></script>
 </head>
 <body>
 <div id="container">
@@ -165,7 +163,7 @@
     <div id = "content">
 
 
-            <label id="issues_report"></label>
+        <label id="issues_report"></label>
 
     </div>
     <hr>
@@ -175,7 +173,7 @@
     <div id = buttonCase>
 
         <button type="button" id="print_report_but" class="actionButton">Generate Report</button>
-            <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
+        <a href="../MainMenu/"><button type="button" id="returnButton">Return</button></a>
 
     </div>
     <br>
