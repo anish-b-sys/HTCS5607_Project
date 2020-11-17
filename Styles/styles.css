@@ -144,3 +144,9 @@ p{
 a {
     color: white;
 }
+textarea{
+ resize: vertical;
+ min-height: 25px;
+ max-height: 75px;
+
+}
