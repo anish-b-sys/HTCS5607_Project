@@ -64,10 +64,16 @@
                         location.reload();
                     },
 
-                    error: function (data) {
-                        alert('Please Check Fields');
-                        location.reload();
-                    }
+                     error: function (err) {
+                        console.log(err);
+                        errors = JSON.parse(err.responseText);
+                        console.log(errors);
+                        $("#nameresultDateErr").text(errors.ResultDate);
+                        $("#resultMarkErr").text(errors.Mark);
+                        $("#assessmentSelectErr").text(errors.Assessment);
+                        $("#enrolmentSelectErr").text(errors.Enrolment);
+                       
+                     }
                 });
             });
 
